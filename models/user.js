@@ -12,7 +12,11 @@ const UserSchema = new Schema(
 		password: { 
 			type: String, 
 			required: true 
-		}
+		},
+		registeredBabies: [{
+			type: Schema.Types.ObjectID,
+			ref: 'Baby',
+		}]
 	},
 	{ timestamps: true }
 )
