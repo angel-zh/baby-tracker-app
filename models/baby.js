@@ -14,6 +14,7 @@ const { Schema, model } = mongoose
 const babySchema = new Schema(
 	{
 		firstName: { type: String, required: true },
+		lastName: { type: String, required: true },
 		dateOfBirth: { type: Date, required: true },
 		gender: { type: String, required: true },
 		parent: {
