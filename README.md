@@ -20,9 +20,9 @@ As a user, I want the ability to...
 - sign in with a username and password
 - sign out
 - create a profile for my baby
-- log my feedings
-- log my sleep times
-- log my diaper changes
+- log feedings
+- log sleep times
+- log diaper changes
 - view all my logs
 - edit my logs 
 - delete my logs
@@ -46,7 +46,7 @@ As a user, I want the ability to...
 
 ## Entity Relationship
 
-![ERD](2022-10-09-20-38-13.png)
+![ERD](https://i.imgur.com/KeSKWpa.png)
 
 
 ## Credits
