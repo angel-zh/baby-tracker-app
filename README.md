@@ -44,9 +44,31 @@ As a user, I want the ability to...
 ![logout](https://share.balsamiq.com/c/qCLqtBXk3cTkuUypE2jbEn.png)
 
 
-## Entity Relationship
+## Entity Relationship Diagrams
 
 ![ERD](https://i.imgur.com/KeSKWpa.png)
+
+
+## Seed Data Example
+```
+const seedDiaper = [{
+    time: '3:15',
+    pee: true,
+    poop: true
+}]
+
+```
+
+## Schedule for the Week
+Install all relevate npm packages required to make the app.
+Do some pseudocoding to get the plan/ideas down.
+Start with setting up the database connections, middleware, and creating the schemas/models. 
+Set up the controllers and routes, CRUD.
+Test the routes via Postman to make sure they work.
+Move onto the frontend part, views, and styling with css framework.
+Test functionality.
+Add any additional features if time permits.
+
 
 
 ## Credits
