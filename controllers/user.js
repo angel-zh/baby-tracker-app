@@ -41,6 +41,35 @@ router.post('/signup', async (req, res) => {
 	}
 })
 
+
+// // POST route for sign up
+// // talks to the database, gets data from signup form, creates a new user
+// router.post('/signup', async (req, res) => {
+//     // this route will receive a req.body
+//     console.log('this is our initial req.body', req.body)
+//     // first step, is to encrypt our password
+//     req.body.password = await bcrypt.hash(
+//         req.body.password,
+//         await bcrypt.genSalt(10)
+//     )
+//     console.log('req.body after hash', req.body)
+
+//     // create a new user
+//     User.create(req.body)
+//         // if successful, console log the user(for now)
+//         .then(user => {
+//             console.log(user)
+//             // res.status(201).json({ username: user.username})
+//             res.redirect('/auth/login')
+//         })
+//         // if an error occurs, log the error
+//         .catch(err => {
+//             console.log(err)
+//             res.redirect(`/error?error=${err}`)
+//         })
+// })
+
+
 // GET
 // get to render the login form
 router.get('/login', (req, res) => {
