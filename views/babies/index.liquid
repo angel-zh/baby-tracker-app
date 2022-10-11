@@ -1,0 +1,26 @@
+{% layout 'layout.liquid'%}
+{% block content %}
+{% if baby.parent == userId %}
+<div>
+    <h2 class="display-6">All Examples</h2>
+    <div class="row">
+        {% for baby in babies %}
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-header">{{ baby.firstName }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Date of Birth: 
+                    {{ baby.dateOfBirth }} 
+                </h5>
+                <a href="/babies/{{ baby.id }}" class="btn btn-info">
+                    View details
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else  %}
+    <h3>You don't have any registered babies.</h3>
+{% endif %}
+{% endblock %}
