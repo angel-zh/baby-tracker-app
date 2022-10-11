@@ -1,0 +1,46 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="container-sm">
+    <form action="/babies" method="POST">
+        <fieldset>
+            <legend>Create a profile for a new baby:</legend>
+            <label class="form-label">First Name: </label>
+            <input 
+                type="text" 
+                name="firstName" 
+                placeholder="enter baby's first name"
+                class="form-control"
+            >
+            <label class="form-label">Last Name: </label>
+            <input 
+                type="text" 
+                name="lastName" 
+                placeholder="enter baby's last name" 
+                class="form-control"
+            >
+            <label class="form-label">Date of Birth: </label>
+            <input 
+                type="date" 
+                name="dateOfBirth" 
+                class="form-control"
+            >
+            Gender: 
+            <input 
+                type="radio" 
+                name="gender"
+                value="Girl" 
+                class="form-check-input"
+            >
+            <label class="form-label">Girl</label>
+            <input 
+                type="radio" 
+                name="gender"
+                value="Boy" 
+                class="form-check-input"
+            >
+            <label class="form-label">Boy</label>
+        </fieldset>
+        <input type="submit" value="Add Baby" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}
