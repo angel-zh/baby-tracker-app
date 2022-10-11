@@ -28,7 +28,7 @@ const babySchema = new Schema(
 	{ timestamps: true }
 )
 
-const Example = model('Baby', babySchema)
+const Baby = model('Baby', babySchema)
 
 /////////////////////////////////
 // Export our Model
