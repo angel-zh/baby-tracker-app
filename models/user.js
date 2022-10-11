@@ -13,10 +13,10 @@ const UserSchema = new Schema(
 			type: String, 
 			required: true 
 		},
-		registeredBabies: [{
-			type: Schema.Types.ObjectID,
-			ref: 'Baby',
-		}]
+		// registeredBabies: [{
+		// 	type: Schema.Types.ObjectID,
+		// 	ref: 'Baby',
+		// }]
 	},
 	{ timestamps: true }
 )
