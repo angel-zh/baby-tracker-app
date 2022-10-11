@@ -1,6 +1,7 @@
 // Import Dependencies
 const express = require('express')
 const Baby = require('../models/baby')
+const User = require('../models/user')
 
 // Create router
 const router = express.Router()
@@ -35,6 +36,7 @@ const router = express.Router()
 
 
 // GET - Index all babies registered by the user
+// All babies are registered to user(s) (i.e. there are no free babies to look up)
 router.get('/', (req, res) => {
 	Baby.find({})
 		.populate('diapers.baby', 'firstName')
@@ -49,6 +51,14 @@ router.get('/', (req, res) => {
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
+})
+
+// GET - Render form to register a new baby
+router.get('/new', (req, res) => {
+	const username = req.session.username
+    const loggedIn = req.session.loggedIn
+    const userId = req.session.userId
+    res.render('babies/new', { username, loggedIn, userId })
 })
 
 
@@ -71,12 +81,6 @@ router.get('/:id', (req, res) => {
 })
 
 
-// GET - Render form to register a new baby
-router.get('/new', (req, res) => {
-	const { username, userId, loggedIn } = req.session
-	res.render('babies/new', { username, loggedIn, userId })
-})
-
 
 // POST - Create a new baby profile document
 router.post('/', (req, res) => {
@@ -85,12 +89,36 @@ router.post('/', (req, res) => {
 	Baby.create(req.body)
 		.then(baby => {
 			console.log('This baby profile was created', baby)
+
 			res.redirect('/babies')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
+
+
+// // POST - Create a new baby profile document
+// router.post('/', (req, res) => {
+// 	// req.body.ready = req.body.ready === 'on' ? true : false
+// 	req.body.parent = req.session.userId
+// 	Baby.create(req.body)
+// 		.then(baby => {
+// 			console.log('This baby profile was created', baby)
+			
+// 			// User.findById({_id: baby.parent })
+// 			// 	.then(user => {
+// 			// 		user.registeredBabies.push(req.body)
+// 			// 		return user.save()
+// 				// })
+// 				.catch(error => {
+// 					res.redirect(`/error?error=${error}`)
+// 				})
+// 		.catch(error => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// 	})
+// })
 
 
 // GET - Show update page to edit baby profile 
