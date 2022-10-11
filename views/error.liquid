@@ -1,7 +1,12 @@
 {% layout "layout.liquid" %}
 {% block content %}
 
-<h1 class="error">{{error}}</h1>
+<div class="container-sm">
+    <h2>Oh no, something went wrong...</h2>
+    <p class="error">{{error}}</p>
+    <a href="/" class="btn btn-info">Back to Homepage</a>
 
+
+</div>
 
 {% endblock %}
