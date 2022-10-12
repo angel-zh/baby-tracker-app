@@ -21,13 +21,12 @@ const router = express.Router()
 // })
 
 // Routes
-// GET all babies
-// Index Route
+// GET - index all babies
 router.get('/', (req, res) => {
     Baby.find({})
 		.populate('diapers.baby', 'firstName')
 		.populate('feedings.baby', 'firstName')
-		.populate('sleep.baby', 'firstName')
+		.populate('sleepSessions.baby', 'firstName')
         .then(babies => {
             const username = req.session.username
             const loggedIn = req.session.loggedIn
