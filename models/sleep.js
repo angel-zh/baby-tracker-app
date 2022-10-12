@@ -8,9 +8,9 @@ const { Schema } = mongoose
 
 const sleepSchema = new Schema(
 	{
-		date: { type: Date, default: Date.now },
-		startTime: String,
-		endTime: String,
+		date: { type: Date, required: true },
+		startTime: Date,
+		endTime: Date,
         memo: String,
 		baby: {
 			type: Schema.Types.ObjectID,

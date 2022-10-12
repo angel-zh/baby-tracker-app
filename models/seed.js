@@ -7,8 +7,8 @@ const User = require('./user')
 const db = mongoose.connection
 db.on('open', () => {
     const startBabies = [
-        { firstName: 'Miles', lastName: 'Janson', dateOfBirth: '2022-08-10', gender: 'Boy', owner: '6345d2fee678fe23368ad3be' },
-        { firstName: 'Sally', lastName: 'Pickle', dateOfBirth: '2022-09-25', gender: 'Girl', owner: '6345d2fee678fe23368ad3be' },
+        { firstName: 'Miles', lastName: 'Janson', dateOfBirth: '2022/08/10', gender: 'Boy', owner: '6345d2fee678fe23368ad3be' },
+        { firstName: 'Sally', lastName: 'Pickle', dateOfBirth: '2022/09/25', gender: 'Girl', owner: '6345d2fee678fe23368ad3be' },
         // { firstName: 'Keith', lastName: 'Evanson', dateOfBirth: '2022-09-02', gender: 'Boy' },
         // { firstName: 'Chloe', lastName: 'Evanson', dateOfBirth: '2022-09-02', gender: 'Girl' },
     ]
