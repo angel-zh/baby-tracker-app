@@ -15,15 +15,15 @@ const babySchema = new Schema(
 	{
 		firstName: { type: String, required: true },
 		lastName: { type: String, required: true },
-		dateOfBirth: { type: Date, required: true },
+		dateOfBirth: { type: String, required: true },
 		gender: { type: String, required: true },
-		parent: {
+		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',
 		},
 		diapers: [diaperSchema],
 		feedings: [feedingSchema],
-		sleep: [sleepSchema]
+		sleepSessions: [sleepSchema]
 	},
 	{ timestamps: true }
 )

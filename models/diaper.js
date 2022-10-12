@@ -8,9 +8,10 @@ const { Schema } = mongoose
 
 const diaperSchema = new Schema(
 	{
-		dateTime: { type: Date, default: Date.now },
-		poop: { type: Boolean, required: true},
+		date: { type: Date, default: Date.now },
+		time: { type: String, required: true},
         pee: { type: Boolean, required: true},
+		poop: { type: Boolean, required: true},
         memo: String,
 		baby: {
 			type: Schema.Types.ObjectID,

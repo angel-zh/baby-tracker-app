@@ -8,11 +8,11 @@ const { Schema } = mongoose
 
 const feedingSchema = new Schema(
 	{
-		startDateTime: { type: Date, default: Date.now },
-		endDateTime: Date,
+		date: { type: Date, default: Date.now },
+		time: { type: String, required: true},
         bottle: { type: Boolean, required: true},
         breast: { type: Boolean, required: true},
-        amount: Number,
+        amount: { type: Number, required: true},
         memo: String,
 		baby: {
 			type: Schema.Types.ObjectID,
