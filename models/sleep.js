@@ -15,6 +15,11 @@ const sleepSchema = new Schema(
 			type: Schema.Types.ObjectID,
 			ref: 'Baby',
             required: true
+		},
+		parent: {
+			type: Schema.Types.ObjectId,
+        	ref: 'User',
+        	required: true
 		}
 	},
 	{ timestamps: true }
