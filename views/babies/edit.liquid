@@ -24,7 +24,7 @@
             <input 
                 type="date" 
                 name="dateOfBirth"
-                value="{{ baby.dateOfBirth }}"
+                value="{{ baby.dateOfBirth | date: "%Y-%m-%d" }}"
                 class="form-control"
                 required
             >
