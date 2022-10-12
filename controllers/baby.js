@@ -21,61 +21,57 @@ const router = express.Router()
 // })
 
 // Routes
-// // GET - Index all 
-// router.get('/mine', (req, res) => {
-//     // destructure user info from req.session
-//     const { username, userId, loggedIn } = req.session
-// 	Example.find({ owner: userId })
-// 		.then(examples => {
-// 			res.render('examples/index', { examples, username, loggedIn })
-// 		})
-// 		.catch(error => {
-// 			res.redirect(`/error?error=${error}`)
-// 		})
-// })
-
-
-// GET - Index all babies registered by the user
-// All babies are registered to user(s) (i.e. there are no free babies to look up)
+// GET all babies
+// Index Route
 router.get('/', (req, res) => {
-	Baby.find({})
+    Baby.find({})
 		.populate('diapers.baby', 'firstName')
-        .populate('feedings.baby', 'firstName')
+		.populate('feedings.baby', 'firstName')
 		.populate('sleep.baby', 'firstName')
-		.then(babies => {
-			const username = req.session.username
-			const loggedIn = req.session.loggedIn
-			const userId = req.session.userId
-			res.render('babies/index', { babies, username, loggedIn, userId })
-		})
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
+        .then(babies => {
+            const username = req.session.username
+            const loggedIn = req.session.loggedIn
+            const userId = req.session.userId
+            // here, we're going to render page but we can also send data that we got from the database to that liquid page for rendering, this data is an object that contains all babies
+            res.render('babies/index', { babies, username, loggedIn, userId })
+        })
+        .catch(err => res.redirect(`/error?error=${err}`))
 })
+
 
 // GET - Render form to register a new baby
 router.get('/new', (req, res) => {
 	const username = req.session.username
-    const loggedIn = req.session.loggedIn
-    const userId = req.session.userId
-    res.render('babies/new', { username, loggedIn, userId })
+	const loggedIn = req.session.loggedIn
+	const userId = req.session.userId
+	res.render('babies/new', { username, loggedIn, userId })
 })
 
-
-// GET - Show one baby
-router.get('/:id', (req, res) => {
-    const babyId = req.params.id
-    Baby.findById(babyId)
-		.populate('diapers.baby', 'firstName')
-		.populate('feedings.baby', 'firstName')
-		.populate('sleep.baby', 'firstName')
-        .then(baby => {
+// GET for user's babies
+router.get('/mine', (req, res) => {
+    // find babies by owner and display them
+    Baby.find({ owner: req.session.userId })
+        .then(babies => {
             const username = req.session.username
             const loggedIn = req.session.loggedIn
             const userId = req.session.userId
-            res.render('babies/show', { baby, username, loggedIn, userId })
+            res.render('babies/index', { babies, username, loggedIn, userId })
         })
-        .catch(error => {
+        .catch(err => res.redirect(`/error?error=${err}`))
+    })
+
+// GET - Show one baby
+router.get('/:id', (req, res) => {
+	const babyId = req.params.id
+	Baby.findById(babyId)
+		
+		.then(baby => {
+			const username = req.session.username
+			const loggedIn = req.session.loggedIn
+			const userId = req.session.userId
+			res.render('babies/show', { baby, username, loggedIn, userId })
+		})
+		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
@@ -85,7 +81,7 @@ router.get('/:id', (req, res) => {
 // POST - Create a new baby profile document
 router.post('/', (req, res) => {
 	// req.body.ready = req.body.ready === 'on' ? true : false
-	req.body.parent = req.session.userId
+	req.body.owner = req.session.userId
 	Baby.create(req.body)
 		.then(baby => {
 			console.log('This baby profile was created', baby)
@@ -101,16 +97,16 @@ router.post('/', (req, res) => {
 // // POST - Create a new baby profile document
 // router.post('/', (req, res) => {
 // 	// req.body.ready = req.body.ready === 'on' ? true : false
-// 	req.body.parent = req.session.userId
+// 	req.body.owner = req.session.userId
 // 	Baby.create(req.body)
 // 		.then(baby => {
 // 			console.log('This baby profile was created', baby)
-			
-// 			// User.findById({_id: baby.parent })
-// 			// 	.then(user => {
-// 			// 		user.registeredBabies.push(req.body)
-// 			// 		return user.save()
-// 				// })
+
+// 			User.findById({_id: baby.owner })
+// 				.then(user => {
+// 					user.registeredBabies.push(req.body)
+// 					return user.save()
+// 				})
 // 				.catch(error => {
 // 					res.redirect(`/error?error=${error}`)
 // 				})
@@ -122,19 +118,19 @@ router.post('/', (req, res) => {
 
 
 // GET - Show update page to edit baby profile 
-router.get('/edit/:id', (req, res) => {
-		const username = req.session.username
-		const loggedIn = req.session.loggedIn
-		const userId = req.session.userId
-		const babyId = req.params.id
-		Baby.findById(babyId)
-			.then (baby => {
-				res.render('babies/edit', { baby, username, loggedIn, userId })
-			})
-			.catch(error => {
-				res.redirect(`/error?error=${error}`)
-			})
-	})
+router.get('/:id/edit', (req, res) => {
+	const username = req.session.username
+	const loggedIn = req.session.loggedIn
+	const userId = req.session.userId
+	const babyId = req.params.id
+	Baby.findById(babyId)
+		.then(baby => {
+			res.render('babies/edit', { baby, username, loggedIn, userId })
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
 
 
 // PUT - Edit/update baby profile	
@@ -144,14 +140,17 @@ router.put('/:id', (req, res) => {
 
 	Baby.findById(babyId)
 		.then(baby => {
-            return baby.updateOne(req.body)
+			if (baby.owner == req.session.userId) {
+                return baby.updateOne(req.body)
+            // if owner is not the user, unauthorized status
+            } else {
+                res.sendStatus(401)
+            }
         })
         .then(() => {
             res.redirect(`/babies/${babyId}`)
         })
-        .catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
+        .catch(err => res.redirect(`/error?error=${err}`))
 })
 
 
