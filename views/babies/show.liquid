@@ -5,14 +5,113 @@
         <h2>{{ baby.firstName }} {{ baby.lastName }}</h2>
         <h3>{{ baby.gender }}</h3>
         <h6>Date Of Birth: {{ baby.dateOfBirth }}</h6>
-        {% if baby.parent == userId %}
+        {% if baby.owner == userId %}
         <div class="btn-group">
-            <a href="/babies/{{ baby.id }}/edit" class="btn btn-primary">Edit</a>
-            <form action="/babies/{{ baby.id }}?_method=DELETE" method="POST">
+            <a href="/babies/{{baby.id}}/edit" class="btn btn-primary">Edit</a>
+            <form action="/babies/{{baby.id}}?_method=DELETE" method="POST">
                 <input type="submit" value="Delete" class="btn btn-danger">
             </form>
         </div>
         {% endif %}
     </article>
+
+
+    <!-- {% if loggedIn %} -->
+    <div class="col-md-4">
+        <form action="/feedings/{{baby.id}}" method="POST">
+            <fieldset>
+                <legend>New Feeding Session</legend>
+                <label class="form-label">Date:</label>
+                <input class="form-control" type="date" name="date">
+                <label class="form-label">Time of feeding:</label>
+                <input class="form-control" type="time" name="time" required>
+                <label class="form-label mt-1">Bottle</label>
+                <input class="form-check-input mt-2" type="checkbox" name="bottle">
+                <label class="form-label mt-1">Breast</label>
+                <input class="form-check-input mt-2" type="checkbox" name="breast"><br>
+                <label class="form-label">Amount (oz):</label>
+                <input class="form-control mb-2" type="number" min="0" step=".5" name="amount" required>
+                <label class="form-label">Memo: </label>
+                <input class="form-control" type="text" name="memo" placeholder="(optional)">
+            </fieldset>
+            <input class="btn btn-success mt-2" type="submit" value="Add Feeding">
+        </form>
+    </div>
+    <!-- {% else %}
+<div class="col-md-6">
+    Please create an account or log in if you'd like to log events.
+</div>
+{% endif %} -->
+    <hr>
+
+    <div class="col-md-4">
+        <form action="/sleep/{{baby.id}}" method="POST">
+            <fieldset>
+                <legend>New Sleep Session</legend>
+                <label class="form-label">Date:</label>
+                <input class="form-control" type="date" name="date">
+                <label class="form-label">Start time:</label>
+                <input class="form-control" type="time" name="startTime">
+                <label class="form-label">Wake up time:</label>
+                <input class="form-control" type="time" name="endTime">
+                <label class="form-label">Memo: </label>
+                <input class="form-control" type="text" name="memo" placeholder="(optional)">
+            </fieldset>
+            <input class="btn btn-success mt-2" type="submit" value="Add Sleep">
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="col-md-4">
+        <form action="/diapers/{{baby.id}}" method="POST">
+            <fieldset>
+                <legend>New Diaper Change</legend>
+                <label class="form-label">Date:</label>
+                <input class="form-control" type="date" name="date">
+                <label class="form-label">Time:</label>
+                <input class="form-control" type="time" name="time" required>
+                <label class="form-label mt-1">Pee</label>
+                <input class="form-check-input mt-2" type="checkbox" name="pee">
+                <label class="form-label mt-1">Poop</label>
+                <input class="form-check-input mt-2" type="checkbox" name="poop"><br>
+                <label class="form-label">Memo: </label>
+                <input class="form-control" type="text" name="memo" placeholder="(optional)">
+            </fieldset>
+            <input class="btn btn-success mt-2" type="submit" value="Add Diaper Change">
+        </form>
+    </div>
+
+    <div class="row" justify-content-center>
+        {% if baby.feedings.length > 0 %}
+        <div class="col-md-8 col-lg-4">
+            {% for feeding in baby.feedings %}
+                {% render '../feedings/index.liquid', feeding: feeding, userId: userId, baby: baby %}
+            {% endfor %}
+        </div>
+        {% else %}
+            <small>no feedings yet...</small>
+        {% endif %}
+
+        {% if baby.sleepSessions.length > 0 %}
+        <div class="col-md-8 col-lg-4">
+            {% for sleep in baby.sleepSessions %}
+                {% render '../sleep/index.liquid', sleep: sleep, userId: userId, baby: baby %}
+            {% endfor %}
+        </div>
+        {% else %}
+            <small>no sleep/naps yet...</small>
+        {% endif %}
+
+        {% if baby.diapers.length > 0 %}
+        <div class="col-md-8 col-lg-4">
+            {% for diaper in baby.diapers %}
+                {% render '../diapers/index.liquid', diaper: diaper, userId: userId, baby: baby %}
+            {% endfor %}
+        </div>
+        {% else %}
+            <small>no diaper changes yet...</small>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
