@@ -12,7 +12,7 @@ const feedingSchema = new Schema(
 		time: { type: String, required: true },
         bottle: { type: Boolean, required: true },
         breast: { type: Boolean, required: true },
-        amount: { type: Number, required: true },
+        amount: Number,
         memo: String,
 		baby: {
 			type: Schema.Types.ObjectID,
