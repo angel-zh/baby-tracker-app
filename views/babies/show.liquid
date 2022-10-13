@@ -3,8 +3,8 @@
 <div class="container-md">
     <article>
         <h2>{{ baby.firstName }} {{ baby.lastName }}</h2>
-        <h3>{{ baby.gender }}</h3>
-        <h6>Date Of Birth: {{ baby.dateOfBirth }}</h6>
+        <h4>Baby {{ baby.gender }}</h4>
+        <h5>Birthday: {{ baby.dateOfBirth | date: "%a, %b %d, %y" }}</h5>
         {% if baby.owner == userId %}
         <div class="btn-group">
             <a href="/babies/{{baby.id}}/edit" class="btn btn-primary">Edit</a>
@@ -16,15 +16,15 @@
     </article>
 
 
-    <!-- {% if loggedIn %} -->
+    {% if loggedIn %}
     <div class="col-md-4">
         <form action="/feedings/{{baby.id}}" method="POST">
             <fieldset>
                 <legend>New Feeding Session</legend>
                 <label class="form-label">Date:</label>
-                <input class="form-control" type="date" name="date">
+                <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
                 <label class="form-label">Time of feeding:</label>
-                <input class="form-control" type="time" name="time" required>
+                <input class="form-control" type="time" name="time" value="{{ "now" | date: "%H:%M" }}">
                 <label class="form-label mt-1">Bottle</label>
                 <input class="form-check-input mt-2" type="checkbox" name="bottle">
                 <label class="form-label mt-1">Breast</label>
@@ -36,12 +36,8 @@
             </fieldset>
             <input class="btn btn-success mt-2" type="submit" value="Add Feeding">
         </form>
-    </div>
-    <!-- {% else %}
-<div class="col-md-6">
-    Please create an account or log in if you'd like to log events.
-</div>
-{% endif %} -->
+    </div>   
+     
     <hr>
 
     <div class="col-md-4">
@@ -49,9 +45,9 @@
             <fieldset>
                 <legend>New Sleep Session</legend>
                 <label class="form-label">Date:</label>
-                <input class="form-control" type="date" name="date">
+                <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
                 <label class="form-label">Start time:</label>
-                <input class="form-control" type="time" name="startTime">
+                <input class="form-control" type="time" name="startTime" value="{{ "now" | date: "%H:%M" }}">
                 <label class="form-label">Wake up time:</label>
                 <input class="form-control" type="time" name="endTime">
                 <label class="form-label">Memo: </label>
@@ -68,9 +64,9 @@
             <fieldset>
                 <legend>New Diaper Change</legend>
                 <label class="form-label">Date:</label>
-                <input class="form-control" type="date" name="date">
+                <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
                 <label class="form-label">Time:</label>
-                <input class="form-control" type="time" name="time" required>
+                <input class="form-control" type="time" name="time" value="{{ "now" | date: "%H:%M" }}">
                 <label class="form-label mt-1">Pee</label>
                 <input class="form-check-input mt-2" type="checkbox" name="pee">
                 <label class="form-label mt-1">Poop</label>
@@ -83,35 +79,26 @@
     </div>
 
     <div class="row" justify-content-center>
-        {% if baby.feedings.length > 0 %}
+        
         <div class="col-md-8 col-lg-4">
-            {% for feeding in baby.feedings %}
+
+            {% for feeding in baby.feedings reversed %}
                 {% render '../feedings/index.liquid', feeding: feeding, userId: userId, baby: baby %}
             {% endfor %}
         </div>
-        {% else %}
-            <small>no feedings yet...</small>
-        {% endif %}
-
-        {% if baby.sleepSessions.length > 0 %}
+        
         <div class="col-md-8 col-lg-4">
-            {% for sleep in baby.sleepSessions %}
-                {% render '../sleep/index.liquid', sleep: sleep, userId: userId, baby: baby %}
-            {% endfor %}
-        </div>
-        {% else %}
-            <small>no sleep/naps yet...</small>
-        {% endif %}
-
-        {% if baby.diapers.length > 0 %}
-        <div class="col-md-8 col-lg-4">
-            {% for diaper in baby.diapers %}
+            {% for diaper in baby.diapers reversed %}
                 {% render '../diapers/index.liquid', diaper: diaper, userId: userId, baby: baby %}
             {% endfor %}
         </div>
-        {% else %}
-            <small>no diaper changes yet...</small>
-        {% endif %}
+        
+        <div class="col-md-8 col-lg-4">
+            {% for sleep in baby.sleepSessions reversed %}
+                {% render '../sleep/index.liquid', sleep: sleep, userId: userId, baby: baby %}
+            {% endfor %}
+        </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
