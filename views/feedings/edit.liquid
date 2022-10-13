@@ -1,0 +1,62 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="col-md-4">
+    <form action="/feedings/{{baby.id}}/{{theFeeding.id}}?_method=PUT" method="POST">
+        <fieldset>
+            <legend>Edit Feeding Log</legend>
+            <label class="form-label">Date:</label>
+            <input 
+                class="form-control" 
+                type="date" 
+                name="date" 
+                value="{{ theFeeding.date | date: "%Y-%m-%d" }}"
+            >
+            <label class="form-label">Time:</label>
+            <input 
+                class="form-control" 
+                type="time" 
+                name="time" 
+                value="{{ theFeeding.time | date: "%H:%M" }}"
+            >
+            <label class="form-label mt-1">Bottle</label>
+            <input 
+                class="form-check-input mt-2" 
+                type="checkbox" 
+                name="bottle"
+                {% if theFeeding.bottle %}
+                checked 
+                {% endif %}
+            >
+            <label class="form-label mt-1">Breast</label>
+            <input 
+                class="form-check-input mt-2" 
+                type="checkbox" 
+                name="breast" 
+                {% if theFeeding.breast %}
+                checked 
+                {% endif %}
+            >
+            <br>
+            <label class="form-label">Amount (oz):</label>
+            <input 
+                class="form-control mb-2" 
+                type="number" 
+                min="0" 
+                step=".5" 
+                name="amount" 
+                value="{{ theFeeding.amount }}"
+                required
+            >
+            <label class="form-label">Memo: </label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="memo" 
+                value="{{ theDiaper.memo }}"
+            >
+        </fieldset>
+        <input class="btn btn-success mt-2" type="submit" value="Update Changes">
+        <a href="/babies/{{baby.id}}" class="btn btn-warning">Back</a>
+    </form>
+</div>
+{% endblock %}
