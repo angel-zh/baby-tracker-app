@@ -1,0 +1,40 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="col-md-4">
+    <form action="/sleep/{{baby.id}}/{{theSleep.id}}?_method=PUT" method="POST">
+        <fieldset>
+            <legend>New Sleep Session</legend>
+            <label class="form-label">Date:</label>
+            <input 
+                class="form-control" 
+                type="date" 
+                name="date" 
+                value="{{ theSleep.date | date: "%Y-%m-%d" }}"
+            >
+            <label class="form-label">Start time:</label>
+            <input 
+                class="form-control" 
+                type="time" 
+                name="startTime" 
+                value="{{ theSleep.startTime | date: "%H:%M" }}"
+            >
+            <label class="form-label">Wake up time:</label>
+            <input 
+                class="form-control" 
+                type="time" 
+                name="endTime"
+                value="{{ theSleep.endTime | date: "%H:%M" }}"
+            >
+            <label class="form-label">Memo: </label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="memo" 
+                value="{{ theDiaper.memo }}"
+            >
+        </fieldset>
+        <input class="btn btn-success mt-2" type="submit" value="Update Changes">
+        <a href="/babies/{{baby.id}}" class="btn btn-warning">Back</a>
+    </form>
+</div>
+{% endblock %}

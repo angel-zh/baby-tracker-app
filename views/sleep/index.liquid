@@ -2,18 +2,19 @@
 <div class="card mb-4 shadow">
     <div class="card-body">
         <h4>{{ sleep.startTime }} Sleep</h4>
-        <h6>{% if sleep.endTime != '' %}
+        <h5>{% if sleep.endTime != '' %}
             Wake up: {{ sleep.endTime }}
             {% else %}
             Still asleep
             {% endif %}
-        </h6>
+        </h5>
         {% if sleep.memo != '' %}
-        <p><i>Memo: </i>{{ sleep.memo }}</p>
+        <p>Memo: {{ sleep.memo }}</p>
         {% endif %}
-        <small>{{ sleep.date | date: "%a, %b %d, %y" }}</small>
+        <small><i>{{ sleep.date | date: "%a, %b %d, %y" }}</i></small>
         <div class="d-flex justify-content-between">
             {% if sleep.parent == userId %}
+            <a href="/sleep/{{baby.id}}/{{sleep.id}}/edit" class="btn btn-primary">Edit</a>
             <form action="/sleep/delete/{{baby.id}}/{{sleep.id}}?_method=DELETE" method="POST">
                 <input class="btn btn-danger btn-sm" type="submit" value="Delete">
             </form>
