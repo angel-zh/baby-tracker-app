@@ -18,6 +18,7 @@
         <small>{{ diaper.date | date: "%a, %b %d, %y" }}</small>
         <div class="d-flex justify-content-bdtween">
             {% if diaper.parent == userId %}
+            <a href="/diapers/{{baby.id}}/{{diaper.id}}/edit" class="btn btn-primary">Edit</a>
             <form action="/diapers/delete/{{baby.id}}/{{diaper.id}}?_method=DELETE" method="POST">
                 <input class="btn btn-danger btn-sm" type="submit" value="Delete">
             </form>

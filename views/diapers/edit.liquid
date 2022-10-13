@@ -1,0 +1,51 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="col-md-4">
+    <form action="/diapers/{{baby.id}}/{{theDiaper.id}}?_method=PUT" method="POST">
+        <fieldset>
+            <legend>Edit Diaper Log</legend>
+            <label class="form-label">Date:</label>
+            <input 
+                class="form-control" 
+                type="date" 
+                name="date" 
+                value="{{ theDiaper.date | date: "%Y-%m-%d" }}"
+            >
+            <label class="form-label">Time:</label>
+            <input 
+                class="form-control" 
+                type="time" 
+                name="time" 
+                value="{{ theDiaper.time | date: "%H:%M" }}"
+            >
+            <label class="form-label mt-1">Pee</label>
+            <input 
+                class="form-check-input mt-2" 
+                type="checkbox" 
+                name="pee"
+                {% if theDiaper.pee %}
+                checked 
+                {% endif %}
+            >
+            <label class="form-label mt-1">Poop</label>
+            <input 
+                class="form-check-input mt-2" 
+                type="checkbox" 
+                name="poop" 
+                {% if theDiaper.poop %}
+                checked 
+                {% endif %}
+            >
+            <br>
+            <label class="form-label">Memo: </label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="memo" 
+                value="{{ theDiaper.memo }}"
+            >
+        </fieldset>
+        <input class="btn btn-success mt-2" type="submit" value="Update Changes">
+    </form>
+</div>
+{% endblock %}
