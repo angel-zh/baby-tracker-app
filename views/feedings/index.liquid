@@ -1,8 +1,21 @@
 {% block content %}
     <div class="card mb-4 shadow">
         <div class="card-body">
-            <h4>Feeding</h4>
-            <p>{{ feeding }}</p>
+            <h4>{{ feeding.time }} Feeding</h4>
+            <h6>
+                {% if feeding.bottle == true and feeding.breast == true %}
+                    Bottlefed & breastfed 
+                {% elsif feeding.bottle == true and feeding.breast != true %}
+                    Bottlefed 
+                {% elsif feeding.bottle != true and feeding.breast == true %}
+                    Breastfed 
+                {% endif %}
+                {{ feeding.amount }} oz
+            </h6>
+            {% if feeding.memo != '' %}
+            <p><i>Memo: </i>{{ feeding.memo }}</p>
+            {% endif %}
+            <small>{{ feeding.date | date: "%a, %b %d, %y" }}</small>
             <div class="d-flex justify-content-between">
                 {% if feeding.parent == userId %}
                     <form action="/feedings/delete/{{baby.id}}/{{feeding.id}}?_method=DELETE" method="POST">

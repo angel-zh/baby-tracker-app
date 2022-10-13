@@ -1,16 +1,29 @@
 {% block content %}
-    <div class="card mb-4 shadow">
-        <div class="card-body">
-            <h4>Diaper</h4>
-            <p>{{ diaper }}</p>
-            <div class="d-flex justify-content-between">
-                {% if diaper.parent == userId %}
-                    <form action="/diapers/delete/{{baby.id}}/{{diaper.id}}?_method=DELETE" method="POST">
-                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
-                    </form>
-                {% endif %}
-            </div>
+<div class="card mb-4 shadow">
+    <div class="card-body">
+        <h4>{{ diaper.time }} Diaper</h4>
+        <h6>{% if diaper.pee == true and diaper.poop == true %}
+            Pee & poop
+            {% elsif diaper.pee == true %}
+            Pee
+            {% elsif diaper.poop == true %}
+            Poop
+            {% else %}
+            No wet diaper
+            {% endif %}
+        </h6>
+        {% if diaper.memo != '' %}
+        <p><i>Memo: </i>{{ diaper.memo }}</p>
+        {% endif %}
+        <small>{{ diaper.date | date: "%a, %b %d, %y" }}</small>
+        <div class="d-flex justify-content-bdtween">
+            {% if diaper.parent == userId %}
+            <form action="/diapers/delete/{{baby.id}}/{{diaper.id}}?_method=DELETE" method="POST">
+                <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+            </form>
+            {% endif %}
         </div>
     </div>
+</div>
 
 {% endblock %}

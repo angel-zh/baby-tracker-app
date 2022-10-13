@@ -1,16 +1,25 @@
 {% block content %}
-    <div class="card mb-4 shadow">
-        <div class="card-body">
-            <h4>Sleep</h4>
-            <p>{{ sleep }}</p>
-            <div class="d-flex justify-content-between">
-                {% if sleep.parent == userId %}
-                    <form action="/sleep/delete/{{baby.id}}/{{sleep.id}}?_method=DELETE" method="POST">
-                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
-                    </form>
-                {% endif %}
-            </div>
+<div class="card mb-4 shadow">
+    <div class="card-body">
+        <h4>{{ sleep.startTime }} Sleep</h4>
+        <h6>{% if sleep.endTime != '' %}
+            Wake up: {{ sleep.endTime }}
+            {% else %}
+            Still asleep
+            {% endif %}
+        </h6>
+        {% if sleep.memo != '' %}
+        <p><i>Memo: </i>{{ sleep.memo }}</p>
+        {% endif %}
+        <small>{{ sleep.date | date: "%a, %b %d, %y" }}</small>
+        <div class="d-flex justify-content-between">
+            {% if sleep.parent == userId %}
+            <form action="/sleep/delete/{{baby.id}}/{{sleep.id}}?_method=DELETE" method="POST">
+                <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+            </form>
+            {% endif %}
         </div>
     </div>
+</div>
 
 {% endblock %}
