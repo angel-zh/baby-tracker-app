@@ -9,8 +9,8 @@ const { Schema } = mongoose
 const sleepSchema = new Schema(
 	{
 		date: { type: Date, required: true },
-		startTime: Date,
-		endTime: Date,
+		startTime: String,
+		endTime: String,
         memo: String,
 		baby: {
 			type: Schema.Types.ObjectID,

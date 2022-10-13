@@ -9,7 +9,7 @@ const { Schema } = mongoose
 const feedingSchema = new Schema(
 	{
 		date: { type: Date, required: true },
-		time: { type: Date, required: true },
+		time: { type: String, required: true },
         bottle: { type: Boolean, required: true },
         breast: { type: Boolean, required: true },
         amount: { type: Number, required: true },
