@@ -2,7 +2,7 @@
 <div class="card mb-4 shadow">
     <div class="card-body">
         <h4>{{ diaper.time }} Diaper</h4>
-        <h6>{% if diaper.pee == true and diaper.poop == true %}
+        <h5>{% if diaper.pee == true and diaper.poop == true %}
             Pee & poop
             {% elsif diaper.pee == true %}
             Pee
@@ -11,12 +11,12 @@
             {% else %}
             No wet diaper
             {% endif %}
-        </h6>
+        </h5>
         {% if diaper.memo != '' %}
-        <p><i>Memo: </i>{{ diaper.memo }}</p>
+        <p>Memo: {{ diaper.memo }}</p>
         {% endif %}
-        <small>{{ diaper.date | date: "%a, %b %d, %y" }}</small>
-        <div class="d-flex justify-content-bdtween">
+        <small><i>{{ diaper.date | date: "%a, %b %d, %y" }}</i></small>
+        <div class="d-flex justify-content-between">
             {% if diaper.parent == userId %}
             <a href="/diapers/{{baby.id}}/{{diaper.id}}/edit" class="btn btn-primary">Edit</a>
             <form action="/diapers/delete/{{baby.id}}/{{diaper.id}}?_method=DELETE" method="POST">
