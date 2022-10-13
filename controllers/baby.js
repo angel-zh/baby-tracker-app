@@ -6,19 +6,6 @@ const User = require('../models/user')
 // Create router
 const router = express.Router()
 
-// Router Middleware
-// Authorization middleware
-// If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
-// router.use((req, res, next) => {
-// 	// checking the loggedIn boolean of our session
-// 	if (req.session.loggedIn) {
-// 		// if they're logged in, go to the next thing(thats the controller)
-// 		next()
-// 	} else {
-// 		// if they're not logged in, send them to the login page
-// 		res.redirect('/auth/login')
-// 	}
-// })
 
 // Routes
 // GET - index all babies
@@ -93,29 +80,6 @@ router.post('/', (req, res) => {
 })
 
 
-// // POST - Create a new baby profile document
-// router.post('/', (req, res) => {
-// 	// req.body.ready = req.body.ready === 'on' ? true : false
-// 	req.body.owner = req.session.userId
-// 	Baby.create(req.body)
-// 		.then(baby => {
-// 			console.log('This baby profile was created', baby)
-
-// 			User.findById({_id: baby.owner })
-// 				.then(user => {
-// 					user.registeredBabies.push(req.body)
-// 					return user.save()
-// 				})
-// 				.catch(error => {
-// 					res.redirect(`/error?error=${error}`)
-// 				})
-// 		.catch(error => {
-// 			res.redirect(`/error?error=${error}`)
-// 		})
-// 	})
-// })
-
-
 // GET - Show update page to edit baby profile 
 router.get('/:id/edit', (req, res) => {
 	const username = req.session.username
@@ -135,8 +99,6 @@ router.get('/:id/edit', (req, res) => {
 // PUT - Edit/update baby profile	
 router.put('/:id', (req, res) => {
 	const babyId = req.params.id
-	// req.body.ready = req.body.ready === 'on' ? true : false
-
 	Baby.findById(babyId)
 		.then(baby => {
 			if (baby.owner == req.session.userId) {
