@@ -42,34 +42,6 @@ router.post('/signup', async (req, res) => {
 })
 
 
-// // POST route for sign up
-// // talks to the database, gets data from signup form, creates a new user
-// router.post('/signup', async (req, res) => {
-//     // this route will receive a req.body
-//     console.log('this is our initial req.body', req.body)
-//     // first step, is to encrypt our password
-//     req.body.password = await bcrypt.hash(
-//         req.body.password,
-//         await bcrypt.genSalt(10)
-//     )
-//     console.log('req.body after hash', req.body)
-
-//     // create a new user
-//     User.create(req.body)
-//         // if successful, console log the user(for now)
-//         .then(user => {
-//             console.log(user)
-//             // res.status(201).json({ username: user.username})
-//             res.redirect('/auth/login')
-//         })
-//         // if an error occurs, log the error
-//         .catch(err => {
-//             console.log(err)
-//             res.redirect(`/error?error=${err}`)
-//         })
-// })
-
-
 // GET
 // get to render the login form
 router.get('/login', (req, res) => {
@@ -122,21 +94,23 @@ router.post('/login', async (req, res) => {
 		})
 })
 
-// // GET
-// // SENDS to the logout page
-// router.get('/logout', (req, res) => {
-//     const username = req.session.username
-//     const loggedIn = req.session.loggedIn
-//     const userId = req.session.userId
+// GET
+// SENDS to the logout page
+router.get('/logout', (req, res) => {
+    const username = req.session.username
+    const loggedIn = req.session.loggedIn
+    const userId = req.session.userId
 
-//     res.render('auth/logout', { username, loggedIn, userId })
-// })
+    res.render('auth/logout', { username, loggedIn, userId })
+})
 
 // DELETE
 // logout route -> destroy the session
-router.get('/logout', (req, res) => {
-	req.session.destroy(() => {
-		res.redirect('/')
+router.delete('/logout', (req, res) => {
+	req.session.destroy(err => {
+        console.log('req.session after logout', req.session)
+        console.log('err on logout?', err)
+        res.redirect('/')
 	})
 })
 
