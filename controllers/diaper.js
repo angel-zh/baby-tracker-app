@@ -1,7 +1,7 @@
 // Import Dependencies
 const express = require('express')
 const Baby = require('../models/baby')
-const Feeding = require('../models/feeding')
+
 
 
 // Create Router
@@ -41,7 +41,6 @@ router.get('/:babyId/:diaperId/edit', (req, res) => {
     Baby.findById(babyId)
         .then(baby => {
             const theDiaper = baby.diapers.id(diaperId)
-            console.log('this is the diaper change that was found', theDiaper)
             res.render('diapers/edit', { baby, theDiaper, username, loggedIn, userId })
         })
         .catch(error => {
@@ -58,7 +57,6 @@ router.put('/:babyId/:diaperId', (req, res) => {
     Baby.findById(babyId)
         .then(baby => {
             const theDiaper = baby.diapers.id(diaperId)
-            console.log('this is the diaper change that was found', theDiaper)
             if (req.session.loggedIn) {
                 if (theDiaper.parent == req.session.userId) {
                     theDiaper.set(req.body)
