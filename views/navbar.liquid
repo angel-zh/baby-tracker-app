@@ -1,35 +1,22 @@
 {% block content %}
-<nav class="navbar is-primary has-shadow" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item is-size-3" href="/">LilBean</a>
-
-        <a role="button" class="navbar-burger" id="burger" aria-label="menu" aria-expanded="false">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
-
-    <div class="navbar-menu" id="nav-links">
-        <div class="navbar-start">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand">LilBean</a>
+        {% if loggedIn %}
+        <a href="/babies" class="nav-link text-light">Hello {{ username }} </a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             {% if loggedIn %}
-            <a class="navbar-item" href="/babies">My Babies</a>
-            <a class="navbar-item" href="/babies/new">New Baby</a>
-
-        </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <a class="button is-primary mr-4" href="/babies">Hello {{ username }}</a>
-                <div class="buttons is-responsive">
-                    <a class="button is-info" href="/auth/logout">Log Out</a>
-                    {% else %}
-                    <p>&nbsp;&nbsp;&nbsp;</p>
-                    <a class="button is-info mt-3 mr-2" href="/auth/signup">Sign Up</a>
-                    <a class="button is-light mt-3" href="/auth/login">Log In</a>
-                    {% endif %}
-                </div>
-            </div>
+                <a href="/babies" class="nav-link text-light">My Babies</a>
+                <a href="/babies/new" class="nav-link text-light">New Baby</a>
+                <a href="/auth/logout" class="nav-link text-light">Log Out</a>
+            {% else %}
+                <a href="/auth/signup" class="nav-link text-light">Sign Up</a>
+                <a href="/auth/login" class="nav-link text-light">Sign In</a>
+            {% endif %}
         </div>
     </div>
 </nav>

@@ -1,27 +1,19 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 
-<div class="box column is-4 is-offset-one-third mt-5">
-    <div class="is-flex is-justify-content-center">
-        <form action="/auth/signup" method="POST">
-            <fieldset>
-                <legend class="is-size-2 has-text-centered">Sign Up</legend>
-                <div class="field">
-                    <label class="label">*Username:</label>
-                    <input class="control " type="text" name="username" placeholder="username" required>
-                </div>
-                <div class="field">
-                    <label class="label">*Password:</label>
-                    <input class="control" type="password" name="password" placeholder="enter password" required>
-                </div>
-                <div class="field">
-                    <label class="label">*Re-type Password:</label>
-                    <input class="control" type="password" name="passwordCheck" placeholder="re-type password" required>
-                </div>
-            </fieldset>
-            <input class="button is-info is-focused mt-4" type="submit" value="Create Account">
-        </form>
-    </div>
+<div class="container-sm">
+    <form action="/auth/signup" method="POST">
+        <fieldset>
+            <legend>Sign Up Here!</legend>
+            <label class="form-label">*Username:</label>
+            <input class="form-control "type="text" name="username" placeholder="username" required>
+            <label class="form-label">*Password:</label>
+            <input class="form-control" type="password" name="password" placeholder="enter password" required>
+            <label class="form-label">*Re-type Password:</label>
+            <input class="form-control" type="password" name="passwordCheck" placeholder="re-type password" required>
+        </fieldset>
+        <input class="btn btn-success mt-2" type="submit" value="Create Account" >
+    </form>
 </div>
 
 {% endblock %}

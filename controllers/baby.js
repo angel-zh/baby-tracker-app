@@ -1,7 +1,6 @@
 // Import Dependencies
 const express = require('express')
 const Baby = require('../models/baby')
-const User = require('../models/user')
 
 // Create router
 const router = express.Router()
@@ -10,10 +9,10 @@ const router = express.Router()
 // Routes
 // GET - index all babies
 router.get('/', (req, res) => {
-    Baby.find({})
-		.populate('diapers.baby', 'firstName')
-		.populate('feedings.baby', 'firstName')
-		.populate('sleepSessions.baby', 'firstName')
+    Baby.find({ owner: req.session.userId })
+		// .populate('diapers.baby', 'firstName')
+		// .populate('feedings.baby', 'firstName')
+		// .populate('sleepSessions.baby', 'firstName')
         .then(babies => {
             const username = req.session.username
             const loggedIn = req.session.loggedIn
@@ -34,17 +33,17 @@ router.get('/new', (req, res) => {
 })
 
 // GET for user's babies
-router.get('/mine', (req, res) => {
-    // find babies by owner and display them
-    Baby.find({ owner: req.session.userId })
-        .then(babies => {
-            const username = req.session.username
-            const loggedIn = req.session.loggedIn
-            const userId = req.session.userId
-            res.render('babies/index', { babies, username, loggedIn, userId })
-        })
-        .catch(err => res.redirect(`/error?error=${err}`))
-    })
+// router.get('/mine', (req, res) => {
+//     // find babies by owner and display them
+//     Baby.find({ owner: req.session.userId })
+//         .then(babies => {
+//             const username = req.session.username
+//             const loggedIn = req.session.loggedIn
+//             const userId = req.session.userId
+//             res.render('babies/index', { babies, username, loggedIn, userId })
+//         })
+//         .catch(err => res.redirect(`/error?error=${err}`))
+//     })
 
 // GET - Show one baby
 router.get('/:id', (req, res) => {
