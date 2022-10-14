@@ -1,14 +1,17 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 
-    <div class="container-sm">
-        <h2>Are you sure you would like to log out?</h2>
-        <div class="btn-group">
-            <a class="btn btn-warning" href="/babies">No, back to LilBean</a>
+
+<div class="box column is-4 is-offset-one-third mt-5">
+    <h2 class="subtitle has-text-centered">Are you sure you would like to log out?</h2>
+    <div class="is-flex is-justify-content-center">
+            
+        <div class="field is-grouped">
             <form action="/auth/logout?_method=DELETE" method="POST">
-                <input class="btn btn-danger" type="submit" value="Log Out">
+                <input class="button is-danger mr-2" type="submit" value="Log Out">
             </form>
+            <a class="button has-background-danger-light" href="/">No, back to LilBean</a>
         </div>
     </div>
 
-{% endblock %}
+    {% endblock %}

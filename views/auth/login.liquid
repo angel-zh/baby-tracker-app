@@ -1,17 +1,23 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 
-<div class="container-sm">
-    <form action="/auth/login" method="POST">
-        <fieldset>
-            <legend>Welcome Back, Please log in to continue</legend>
-            <label class="form-label">Username: </label>
-            <input class="form-control" type="text" name="username" placeholder="username" required>
-            <label class="form-label">Password</label>
-            <input class="form-control" type="password" name="password" placeholder="enter password" required>
-        </fieldset>
-        <input class="btn btn-success mt-2" type="submit" value="Log In" >
-    </form>
+<div class="box column is-4 is-offset-one-third mt-5">
+    <div class="is-flex is-justify-content-center">
+        <form action="/auth/login" method="POST">
+            <fieldset>
+                <legend class="is-size-3">Welcome back!</legend>
+                <p>Please log in to continue:</p><br>
+                <div class="field">
+                    <label class="label">Username: </label>
+                    <input class="control" type="text" name="username" placeholder="username" required>
+                </div>
+                <div class="field">
+                    <label class="label">Password</label>
+                    <input class="control" type="password" name="password" placeholder="enter password" required>
+                </div>
+            </fieldset>
+            <input class="button is-success is-focused mt-4" type="submit" value="Log In">
+        </form>
+    </div>
 </div>
-
 {% endblock %}
