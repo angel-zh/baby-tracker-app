@@ -1,0 +1,36 @@
+{% block content %}
+
+    <div class="modal fade" id="feedingstaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">New Feeding Session</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/feedings/{{baby.id}}" method="POST">
+                        <fieldset>
+                            <label class="form-label">Date:</label>
+                            <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
+                            <label class="form-label">Time of feeding:</label>
+                            <input class="form-control" type="time" name="time" value="{{ "now" | date: "%H:%M" }}">
+                            <label class="form-label mt-1">Bottle</label>
+                            <input class="form-check-input mt-2" type="checkbox" name="bottle">&nbsp;
+                            <label class="form-label mt-1">Breast</label>
+                            <input class="form-check-input mt-2" type="checkbox" name="breast"><br>
+                            <label class="form-label">Amount (oz):</label>
+                            <input class="form-control mb-2" type="number" min="0" step=".5" name="amount" required>
+                            <label class="form-label">Memo: </label>
+                            <input class="form-control" type="text" name="memo" placeholder="(optional)">
+                        </fieldset>
+                        <div class="modal-footer">
+                            <input class="btn btn-success mt-2" type="submit" value="Add Feeding">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

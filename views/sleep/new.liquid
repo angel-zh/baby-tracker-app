@@ -1,0 +1,32 @@
+{% block content %}
+
+<div class="modal fade" id="sleepstaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">New Sleep Session</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/sleep/{{baby.id}}" method="POST">
+                    <fieldset>
+                        <label class="form-label">Date:</label>
+                        <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
+                        <label class="form-label">Start time:</label>
+                        <input class="form-control" type="time" name="startTime" value="{{ "now" | date: "%H:%M" }}">
+                        <label class="form-label">Wake up time:</label>
+                        <input class="form-control" type="time" name="endTime">
+                        <label class="form-label">Memo: </label>
+                        <input class="form-control" type="text" name="memo" placeholder="(optional)">
+                    </fieldset>
+                    <div class="modal-footer">
+                        <input class="btn btn-success mt-2" type="submit" value="Add Sleep">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
