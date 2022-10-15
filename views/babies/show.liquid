@@ -4,37 +4,61 @@
 {% if baby.owner == userId %}
 <div class="container-md">
     <article>
-        <h2>{{ baby.firstName }} {{ baby.lastName }}</h2>
-        <h4>Baby {{ baby.gender }}</h4>
-        <h5>Birthday: {{ baby.dateOfBirth | date: "%a, %b %d, %y" }}</h5>
-        <div class="btn-group">
-            <a href="/babies/{{baby.id}}/edit" class="btn btn-primary">Edit</a>
+        <div class="text-center my-4">
+            <h2>{{ baby.firstName }} {{ baby.lastName }}</h2>
+            <h4>Baby {{ baby.gender }}</h4>
+            <h5>Birthday: {{ baby.dateOfBirth | date: "%a, %b %d, %y" }}</h5>
+        </div>
+        <div class="container-sm d-flex justify-content-center">
+            <a href="/babies/{{baby.id}}/edit" class="btn btn-outline-primary mx-2">Edit</a>
             <form action="/babies/{{baby.id}}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger">
+                <input type="submit" value="Delete" class="btn btn-outline-danger">
             </form>
         </div>
     </article>
 
-    <div class="col-md-4">
-        <form action="/feedings/{{baby.id}}" method="POST">
-            <fieldset>
-                <legend>New Feeding Session</legend>
-                <label class="form-label">Date:</label>
-                <input class="form-control" type="date" name="date" value="{{ " now" | date: "%Y-%m-%d" }}">
-                <label class="form-label">Time of feeding:</label>
-                <input class="form-control" type="time" name="time" value="{{ " now" | date: "%H:%M" }}">
-                <label class="form-label mt-1">Bottle</label>
-                <input class="form-check-input mt-2" type="checkbox" name="bottle">
-                <label class="form-label mt-1">Breast</label>
-                <input class="form-check-input mt-2" type="checkbox" name="breast"><br>
-                <label class="form-label">Amount (oz):</label>
-                <input class="form-control mb-2" type="number" min="0" step=".5" name="amount" required>
-                <label class="form-label">Memo: </label>
-                <input class="form-control" type="text" name="memo" placeholder="(optional)">
-            </fieldset>
-            <input class="btn btn-success mt-2" type="submit" value="Add Feeding">
-        </form>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <i class="fa-solid fa-circle-plus"></i> Feeding
+    </button>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">New Feeding Session</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/feedings/{{baby.id}}" method="POST">
+                        <fieldset>
+                            <label class="form-label">Date:</label>
+                            <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
+                            <label class="form-label">Time of feeding:</label>
+                            <input class="form-control" type="time" name="time" value="{{ "now" | date: "%H:%M" }}">
+                            <label class="form-label mt-1">Bottle</label>
+                            <input class="form-check-input mt-2" type="checkbox" name="bottle">
+                            <label class="form-label mt-1">Breast</label>
+                            <input class="form-check-input mt-2" type="checkbox" name="breast"><br>
+                            <label class="form-label">Amount (oz):</label>
+                            <input class="form-control mb-2" type="number" min="0" step=".5" name="amount" required>
+                            <label class="form-label">Memo: </label>
+                            <input class="form-control" type="text" name="memo" placeholder="(optional)">
+                        </fieldset>
+                        <div class="modal-footer">
+                        <input class="btn btn-success mt-2" type="submit" value="Add Feeding">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+    <!-- <div class="col-md-4">
+        
+    </div> -->
 
     <hr>
 
@@ -43,9 +67,9 @@
             <fieldset>
                 <legend>New Sleep Session</legend>
                 <label class="form-label">Date:</label>
-                <input class="form-control" type="date" name="date" value="{{ " now" | date: "%Y-%m-%d" }}">
+                <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
                 <label class="form-label">Start time:</label>
-                <input class="form-control" type="time" name="startTime" value="{{ " now" | date: "%H:%M" }}">
+                <input class="form-control" type="time" name="startTime" value="{{ "now" | date: "%H:%M" }}">
                 <label class="form-label">Wake up time:</label>
                 <input class="form-control" type="time" name="endTime">
                 <label class="form-label">Memo: </label>
@@ -62,9 +86,9 @@
             <fieldset>
                 <legend>New Diaper Change</legend>
                 <label class="form-label">Date:</label>
-                <input class="form-control" type="date" name="date" value="{{ " now" | date: "%Y-%m-%d" }}">
+                <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
                 <label class="form-label">Time:</label>
-                <input class="form-control" type="time" name="time" value="{{ " now" | date: "%H:%M" }}">
+                <input class="form-control" type="time" name="time" value="{{ "now" | date: "%H:%M" }}">
                 <label class="form-label mt-1">Pee</label>
                 <input class="form-check-input mt-2" type="checkbox" name="pee">
                 <label class="form-label mt-1">Poop</label>

@@ -1,6 +1,6 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<div class="container-sm">
+<div class="container-sm d-flex justify-content-center mt-5">
     <form action="/babies" method="POST">
         <fieldset>
             <legend>Create a profile for a new baby:</legend>
@@ -22,9 +22,9 @@
             <input 
                 type="date" 
                 name="dateOfBirth" 
-                class="form-control"
+                class="form-control mb-2"
             >
-            Gender: 
+            Gender:
             <input 
                 type="radio" 
                 name="gender"
@@ -40,7 +40,7 @@
             >
             <label class="form-label">Boy</label>
         </fieldset>
-        <input type="submit" value="Add Baby" class="btn btn-success">
+        <input type="submit" value="Add Baby" class="btn btn-success mt-2">
     </form>
 </div>
 {% endblock %}
