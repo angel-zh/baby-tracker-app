@@ -1,14 +1,13 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<div class="container-sm">
+<div class="container-sm d-flex justify-content-center mt-5">
     <form action="/babies/{{baby.id}}?_method=PUT" method="POST">
         <fieldset>
-            <legend>Edit your baby's profile:</legend>
+            <legend>Edit {{ baby.firstName }}'s baby profile below:</legend>
             <label class="form-label">First Name: </label>
             <input 
                 type="text" 
                 name="firstName" 
-                placeholder="Last Name: "
                 value="{{ baby.firstName }}"
                 class="form-control"
             >
@@ -16,7 +15,6 @@
             <input 
                 type="text" 
                 name="lastName" 
-                placeholder="{{ baby.lastName }}" 
                 value="{{ baby.lastName }}" 
                 class="form-control"
             >
@@ -28,8 +26,21 @@
                 class="form-control"
                 required
             >
+            <label class="form-label">Eye Color: </label>
+            <input 
+                type="text" 
+                name="eye" 
+                value="{{ baby.eye }}"
+                class="form-control"
+            >
+            <label class="form-label">Hair Color: </label>
+            <input 
+                type="text" 
+                name="hair" 
+                value="{{ baby.hair }}" 
+                class="form-control"
+            >
             Gender: 
-            <label class="form-label">Girl</label>
             <input 
                 type="radio" 
                 name="gender"
@@ -39,7 +50,7 @@
                     checked
                 {% endif %}
             >
-            <label class="form-label">Boy</label>
+            <label class="form-label">Girl</label>
             <input 
                 type="radio" 
                 name="gender"
@@ -49,8 +60,11 @@
                     checked
                 {% endif %}
             >
+            <label class="form-label">Boy</label>
         </fieldset>
-        <input type="submit" value="Edit Profile" class="btn btn-success">
+        <input type="submit" value="Edit Profile" class="btn btn-primary mt-2">
+        <a class="btn btn-outline-primary mx-2 mt-2" href="/babies/{{baby.id}}">Back</a>
     </form>
+    
 </div>
 {% endblock %}
