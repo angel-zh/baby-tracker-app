@@ -1,9 +1,9 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<div class="col-md-4">
+<div class="container-sm d-flex justify-content-center mt-5">
     <form action="/sleep/{{baby.id}}/{{theSleep.id}}?_method=PUT" method="POST">
         <fieldset>
-            <legend>New Sleep Session</legend>
+            <legend>Edit Sleep Log</legend>
             <label class="form-label">Date:</label>
             <input 
                 class="form-control" 
@@ -29,12 +29,13 @@
             <input 
                 class="form-control" 
                 type="text" 
-                name="memo" 
-                value="{{ theDiaper.memo }}"
+                name="memo"
+                placeholder="(optional)" 
+                value="{{ theSleep.memo }}"
             >
         </fieldset>
-        <input class="btn btn-success mt-2" type="submit" value="Update Changes">
-        <a href="/babies/{{baby.id}}" class="btn btn-warning">Back</a>
+        <input class="btn btn-primary mt-2" type="submit" value="Update">
+        <a href="/babies/{{baby.id}}" class="btn btn-outline-primary mt-2">Back</a>
     </form>
 </div>
 {% endblock %}
