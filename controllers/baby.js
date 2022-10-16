@@ -66,7 +66,8 @@ router.get('/:id', (req, res) => {
 // POST - Create a new baby profile document
 router.post('/', (req, res) => {
 	// req.body.ready = req.body.ready === 'on' ? true : false
-	req.body.owner = req.session.userId
+	req.body.owner = req.session.userId 
+	req.body.dateOfBirth = new Date(req.body.dateOfBirth.replace(/-/g, '\/').replace(/T.+/, ''))
 	Baby.create(req.body)
 		.then(baby => {
 			console.log('This baby profile was created', baby)
@@ -97,6 +98,7 @@ router.get('/:id/edit', (req, res) => {
 
 // PUT - Edit/update baby profile	
 router.put('/:id', (req, res) => {
+	req.body.dateOfBirth = new Date(req.body.dateOfBirth.replace(/-/g, '\/').replace(/T.+/, ''))
 	const babyId = req.params.id
 	Baby.findById(babyId)
 		.then(baby => {

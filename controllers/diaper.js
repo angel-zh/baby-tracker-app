@@ -13,6 +13,7 @@ router.post('/:babyId', (req, res) => {
     const babyId = req.params.babyId
     req.body.pee = req.body.pee === 'on' ? true : false
     req.body.poop = req.body.poop === 'on' ? true : false
+    req.body.date = new Date(req.body.date.replace(/-/g, '\/').replace(/T.+/, ''))
     if (req.session.loggedIn) {
         req.body.parent = req.session.userId
         req.body.baby = babyId
@@ -54,6 +55,7 @@ router.put('/:babyId/:diaperId', (req, res) => {
     const diaperId = req.params.diaperId
     req.body.pee = req.body.pee === 'on' ? true : false
     req.body.poop = req.body.poop === 'on' ? true : false
+    req.body.date = new Date(req.body.date.replace(/-/g, '\/').replace(/T.+/, ''))
     Baby.findById(babyId)
         .then(baby => {
             const theDiaper = baby.diapers.id(diaperId)
