@@ -1,5 +1,5 @@
 {% block content %}
-    <div class="card mb-4 shadow">
+    <div class="card mb-4 shadow bg-success bg-gradient text-light">
         <div class="card-body">
             <h4>{{ feeding.time }} Feeding</h4>
             <h5>
@@ -16,11 +16,11 @@
             <p>Memo: {{ feeding.memo }}</p>
             {% endif %}
             <small><i>{{ feeding.date | date: "%a, %b %d, %y" }}</i></small>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-end">
                 {% if feeding.parent == userId %}
-                    <a href="/feedings/{{baby.id}}/{{feeding.id}}/edit" class="btn btn-primary">Edit</a>
+                    <a href="/feedings/{{baby.id}}/{{feeding.id}}/edit" class="btn btn-outline-primary btn-sm mx-2 bg-light">Edit</a>
                     <form action="/feedings/delete/{{baby.id}}/{{feeding.id}}?_method=DELETE" method="POST">
-                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+                        <input class="btn btn-outline-danger btn-sm bg-light" type="submit" value="Delete">
                     </form>
                 {% endif %}
             </div>
