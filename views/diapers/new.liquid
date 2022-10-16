@@ -9,7 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/sleep/{{baby.id}}" method="POST">
+                    <form action="/diapers/{{baby.id}}" method="POST">
                         <fieldset>
                             <label class="form-label">Date:</label>
                             <input class="form-control" type="date" name="date" value="{{ "now" | date: "%Y-%m-%d" }}">
@@ -23,7 +23,7 @@
                             <input class="form-control" type="text" name="memo" placeholder="(optional)">
                         </fieldset>
                         <div class="modal-footer">
-                            <input class="btn btn-success mt-2" type="submit" value="Add Diaper Change">
+                            <input class="btn btn-warning mt-2 text-light" type="submit" value="Add Diaper Change">
                         </div>
                     </form>
                 </div>

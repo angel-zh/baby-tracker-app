@@ -1,5 +1,5 @@
 {% block content %}
-<div class="card mb-4 shadow">
+<div class="card mb-4 shadow bg-warning text-light">
     <div class="card-body">
         <h4>{{ diaper.time }} Diaper</h4>
         <h5>{% if diaper.pee == true and diaper.poop == true %}
@@ -16,11 +16,11 @@
         <p>Memo: {{ diaper.memo }}</p>
         {% endif %}
         <small><i>{{ diaper.date | date: "%a, %b %d, %y" }}</i></small>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-end">
             {% if diaper.parent == userId %}
-            <a href="/diapers/{{baby.id}}/{{diaper.id}}/edit" class="btn btn-primary">Edit</a>
+            <a href="/diapers/{{baby.id}}/{{diaper.id}}/edit" class="btn btn-outline-primary btn-sm mx-2 bg-light">Edit</a>
             <form action="/diapers/delete/{{baby.id}}/{{diaper.id}}?_method=DELETE" method="POST">
-                <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+                <input class="btn btn-outline-danger btn-sm bg-light" type="submit" value="Delete">
             </form>
             {% endif %}
         </div>
