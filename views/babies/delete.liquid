@@ -1,0 +1,24 @@
+{% block content %}
+
+<div class="modal fade" id="deleteBaby" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Baby Profile: {{ baby.firstName }} {{ baby.lastName }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+            All logged events for this baby will also be deleted.<br>
+            Are you sure you want to delete the current baby profile?
+        </div>
+        <div class="modal-footer">
+          <form action="/babies/{{baby.id}}?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>      
+
+{% endblock %}
