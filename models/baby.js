@@ -16,9 +16,9 @@ const babySchema = new Schema(
 		firstName: { type: String, required: true },
 		lastName: { type: String, required: true },
 		dateOfBirth: { type: Date, required: true },
+		eye: { type: String, required: true },
+		hair: { type: String, required: true },
 		gender: { type: String, required: true },
-		// eyes: { type: String, required: true },
-		// hair: { type: String, required: true },
 		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',
