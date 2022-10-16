@@ -1,6 +1,7 @@
 // Import Dependencies
 const express = require('express')
 const Baby = require('../models/baby')
+const formatDate = require('../utils/formatDate')
 
 // Create router
 const router = express.Router()
@@ -67,7 +68,8 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
 	// req.body.ready = req.body.ready === 'on' ? true : false
 	req.body.owner = req.session.userId 
-	req.body.dateOfBirth = new Date(req.body.dateOfBirth.replace(/-/g, '\/').replace(/T.+/, ''))
+	req.body.dateOfBirth = formatDate(req.body.dateOfBirth)
+	console.log(req.body.dateOfBirth)
 	Baby.create(req.body)
 		.then(baby => {
 			console.log('This baby profile was created', baby)
@@ -98,7 +100,7 @@ router.get('/:id/edit', (req, res) => {
 
 // PUT - Edit/update baby profile	
 router.put('/:id', (req, res) => {
-	req.body.dateOfBirth = new Date(req.body.dateOfBirth.replace(/-/g, '\/').replace(/T.+/, ''))
+	req.body.dateOfBirth = formatDate(req.body.dateOfBirth)
 	const babyId = req.params.id
 	Baby.findById(babyId)
 		.then(baby => {

@@ -2,7 +2,7 @@
 // Import Dependencies
 const express = require('express')
 const Baby = require('../models/baby')
-
+const formatDate = require('../utils/formatDate')
 
 
 // Create Router
@@ -14,7 +14,7 @@ router.post('/:babyId', (req, res) => {
     const babyId = req.params.babyId
     req.body.bottle = req.body.bottle === 'on' ? true : false
     req.body.breast = req.body.breast === 'on' ? true : false
-    req.body.date = new Date(req.body.date.replace(/-/g, '\/').replace(/T.+/, ''))
+    req.body.date = formatDate(req.body.date)
     if (req.session.loggedIn) {
         req.body.parent = req.session.userId
         req.body.baby = babyId
@@ -55,7 +55,7 @@ router.put('/:babyId/:feedingId', (req, res) => {
     const feedingId = req.params.feedingId
     req.body.bottle = req.body.bottle === 'on' ? true : false
     req.body.breast = req.body.breast === 'on' ? true : false
-    req.body.date = new Date(req.body.date.replace(/-/g, '\/').replace(/T.+/, ''))
+    req.body.date = formatDate(req.body.date)
     Baby.findById(babyId)
         .then(baby => {
             const theFeeding = baby.feedings.id(feedingId)

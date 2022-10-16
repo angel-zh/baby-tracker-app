@@ -1,7 +1,7 @@
 // Import Dependencies
 const express = require('express')
 const Baby = require('../models/baby')
-
+const formatDate = require('../utils/formatDate')
 
 
 // Create Router
@@ -11,8 +11,8 @@ const router = express.Router()
 // POST
 router.post('/:babyId', (req, res) => {
     const babyId = req.params.babyId
-    req.body.date = new Date(req.body.date.replace(/-/g, '\/').replace(/T.+/, ''))
-    if (req.session.loggedIn) {
+    req.body.date = formatDate(req.body.date)
+        if (req.session.loggedIn) {
         req.body.parent = req.session.userId
         req.body.baby = babyId
     } else {
@@ -51,7 +51,7 @@ router.get('/:babyId/:sleepId/edit', (req, res) => {
 router.put('/:babyId/:sleepId', (req, res) => {
     const babyId = req.params.babyId 
     const sleepId = req.params.sleepId
-    req.body.date = new Date(req.body.date.replace(/-/g, '\/').replace(/T.+/, ''))
+    req.body.date = formatDate(req.body.date)
     Baby.findById(babyId)
         .then(baby => {
             const theSleep = baby.sleepSessions.id(sleepId)
