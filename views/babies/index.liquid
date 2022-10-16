@@ -2,7 +2,9 @@
 {% block content %}
 
 <div class="container-sm">
-    <h2 class="display-6 mt-4 mb-4">My Little Beans</h2>
+    <h1 class="mt-4 mb-2">My Little Beans</h1>
+    <div class="border border-success border-2 opacity-25 mb-4">
+    </div>
     <div class="row">
         {% for baby in babies %}
             <div class="card border-dark mx-1 my-1" style="width: 20rem;">
@@ -13,7 +15,7 @@
                     </h5>
                     <div class="d-flex justify-content-end">
                     <a href="/babies/{{ baby.id }}" class="btn btn-outline-info">
-                        View details
+                        <i class="fa-solid fa-magnifying-glass"></i> View details
                     </a>
                 </div>
                 </div>

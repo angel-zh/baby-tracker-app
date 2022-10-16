@@ -11,9 +11,9 @@
             <h6>{{ baby.firstName }} has beautiful {{ baby.eye | downcase }} eyes and {{ baby.hair | downcase }} hair!</h6>
         </div>
         <div class="container-sm d-flex justify-content-center">
-            <a href="/babies/{{baby.id}}/edit" class="btn btn-outline-primary mx-2">Edit</a>
+            <a href="/babies/{{baby.id}}/edit" class="btn btn-outline-primary mx-2"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteBaby">
-                Delete
+                <i class="fa-solid fa-trash-can"></i> Delete
             </button>
             {% render './delete.liquid', userId: userId, baby: baby %}     
         </div>
@@ -37,7 +37,8 @@
         {% render '../sleep/new.liquid', sleep: sleep, userId: userId, baby: baby %}
     </div>
 
-    <hr>
+    <div class="border border-success border-2 opacity-25 mt-3 mb-1">
+    </div>
 
     <div class="row">
         <div class="col-md-8 col-lg-4">

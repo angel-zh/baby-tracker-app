@@ -1,7 +1,7 @@
 {% block content %}
 <div class="card mb-4 shadow bg-info bg-gradient text-light">
     <div class="card-body">
-        <h4>{{ sleep.startTime }} Sleep</h4>
+        <h4><i class="fa-solid fa-moon fa-lg"></i> {{ sleep.startTime }}</h4>
         <h5>{% if sleep.endTime != '' %}
             Wake up: {{ sleep.endTime }}
             {% else %}

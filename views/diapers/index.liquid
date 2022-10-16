@@ -1,7 +1,7 @@
 {% block content %}
 <div class="card mb-4 shadow bg-warning text-light">
     <div class="card-body">
-        <h4>{{ diaper.time }} Diaper</h4>
+        <h4><i class="fa-solid fa-baby fa-lg"></i> {{ diaper.time }}</h4>
         <h5>{% if diaper.pee == true and diaper.poop == true %}
             Pee & poop
             {% elsif diaper.pee == true %}

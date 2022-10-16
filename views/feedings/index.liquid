@@ -1,7 +1,7 @@
 {% block content %}
     <div class="card mb-4 shadow bg-success bg-gradient text-light">
         <div class="card-body">
-            <h4>{{ feeding.time }} Feeding</h4>
+            <h4><i class="fa-solid fa-person-breastfeeding fa-lg"></i> {{ feeding.time }}</h4>
             <h5>
                 {% if feeding.bottle == true and feeding.breast == true %}
                     Bottlefed & breastfed 
