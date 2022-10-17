@@ -15,7 +15,7 @@
             <h3 class="card-header">{{ baby.firstName }}</h3>
             <div class="card-body">
                 <h5 class="card-title">
-                    Baby {{ baby.gender }}
+                    Birthday: {{ baby.dateOfBirth | date: "%a, %b %d, %y" }}
                 </h5>
                 <div class="d-flex justify-content-end">
                     <a href="/babies/{{ baby.id }}" class="btn btn-secondary">
