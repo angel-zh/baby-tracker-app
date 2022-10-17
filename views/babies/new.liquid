@@ -1,60 +1,30 @@
 {% layout 'layout.liquid' %}
 {% block content %}
+{% if loggedIn %}
 <div class="container-sm d-flex justify-content-center mt-5">
     <form action="/babies" method="POST">
         <fieldset>
             <legend>Create a profile for a new baby:</legend>
             <label class="form-label">First Name: </label>
-            <input 
-                type="text" 
-                name="firstName" 
-                placeholder="enter baby's first name"
-                class="form-control"
-            >
+            <input type="text" name="firstName" placeholder="enter baby's first name" class="form-control">
             <label class="form-label">Last Name: </label>
-            <input 
-                type="text" 
-                name="lastName" 
-                placeholder="enter baby's last name" 
-                class="form-control"
-            >
+            <input type="text" name="lastName" placeholder="enter baby's last name" class="form-control">
             <label class="form-label">Date of Birth: </label>
-            <input 
-                type="date" 
-                name="dateOfBirth" 
-                class="form-control"
-            >
+            <input type="date" name="dateOfBirth" class="form-control">
             <label class="form-label">Eye Color: </label>
-            <input 
-                type="text" 
-                name="eye" 
-                placeholder="eye color"
-                class="form-control"
-            >
+            <input type="text" name="eye" placeholder="eye color" class="form-control">
             <label class="form-label">Hair Color: </label>
-            <input 
-                type="text" 
-                name="hair" 
-                placeholder="hair color" 
-                class="form-control mb-2"
-            >
+            <input type="text" name="hair" placeholder="hair color" class="form-control mb-2">
             Gender:
-            <input 
-                type="radio" 
-                name="gender"
-                value="Girl" 
-                class="form-check-input"
-            >
+            <input type="radio" name="gender" value="Girl" class="form-check-input">
             <label class="form-label">Girl</label>
-            <input 
-                type="radio" 
-                name="gender"
-                value="Boy" 
-                class="form-check-input"
-            >
+            <input type="radio" name="gender" value="Boy" class="form-check-input">
             <label class="form-label">Boy</label>
         </fieldset>
         <input type="submit" value="Add Baby" class="btn btn-success mt-2">
     </form>
+    {% else %}
+    <p class="text-center fs-5">Please log in or create an account to add a baby profile.</p>
 </div>
+{% endif %}
 {% endblock %}

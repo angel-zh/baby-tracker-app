@@ -1,4 +1,5 @@
 {% block content %}
+{% if diaper.parent == userId %}
 <div class="card mb-4 shadow bg-warning text-light">
     <div class="card-body">
         <h4><i class="fa-solid fa-baby fa-lg"></i> {{ diaper.time }}</h4>
@@ -15,16 +16,17 @@
         {% if diaper.memo != '' %}
         <p>Memo: {{ diaper.memo }}</p>
         {% endif %}
-        <small><i>{{ diaper.date | date: "%a, %b %d, %y" }}</i></small>
+        
         <div class="d-flex justify-content-end">
-            {% if diaper.parent == userId %}
-            <a href="/diapers/{{baby.id}}/{{diaper.id}}/edit" class="btn btn-outline-primary btn-sm mx-2 bg-light">Edit</a>
+            <small class="mt-1 me-2"><i>{{ diaper.date | date: "%a, %b %d, %y" }}</i></small>
+            
+            <a href="/diapers/{{baby.id}}/{{diaper.id}}/edit" class="btn btn-outline-primary btn-sm mx-1 bg-light">Edit</a>
             <form action="/diapers/delete/{{baby.id}}/{{diaper.id}}?_method=DELETE" method="POST">
                 <input class="btn btn-outline-danger btn-sm bg-light" type="submit" value="Delete">
             </form>
-            {% endif %}
+            
         </div>
     </div>
 </div>
-
+{% endif %}
 {% endblock %}

@@ -1,4 +1,5 @@
 {% block content %}
+{% if sleep.parent == userId %}
 <div class="card mb-4 shadow bg-info bg-gradient text-light">
     <div class="card-body">
         <h4><i class="fa-solid fa-moon fa-lg"></i> {{ sleep.startTime }}</h4>
@@ -11,10 +12,10 @@
         {% if sleep.memo != '' %}
         <p>Memo: {{ sleep.memo }}</p>
         {% endif %}
-        <small><i>{{ sleep.date | date: "%a, %b %d, %y" }}</i></small>
+        
         <div class="d-flex justify-content-end">
-            {% if sleep.parent == userId %}
-            <a href="/sleep/{{baby.id}}/{{sleep.id}}/edit" class="btn btn-outline-primary btn-sm mx-2 bg-light">Edit</a>
+        <small class="mt-1 me-2"><i>{{ sleep.date | date: "%a, %b %d, %y" }}</i></small>    
+            <a href="/sleep/{{baby.id}}/{{sleep.id}}/edit" class="btn btn-outline-primary btn-sm mx-1 bg-light">Edit</a>
             <form action="/sleep/delete/{{baby.id}}/{{sleep.id}}?_method=DELETE" method="POST">
                 <input class="btn btn-outline-danger btn-sm bg-light" type="submit" value="Delete">
             </form>
