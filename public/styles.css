@@ -1,1 +1,10 @@
+body {
+    background-color: rgb(222, 241, 237);
+    /* background: linear-gradient(rgb(222, 241, 237), rgb(175, 230, 214)); */
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* margin-top: 30px; */
+}
+
 
