@@ -2,9 +2,12 @@
 {% block content %}
 
 <div class="container-sm">
-    <h1 class="mt-4 mb-2">My Little Beans</h1>
+    <h1 class="mb-2">My Little Beans</h1>
     <div class="border border-success border-2 opacity-25 mb-4">
     </div>
+    <a href="/babies/new" class="btn btn-outline-success mb-3">
+        <i class="fa-solid fa-circle-plus fa-lg"></i> &nbsp;New Baby
+    </a>
     <div class="row">
         {% for baby in babies %}
             <div class="card border-dark mx-1 my-1" style="width: 20rem;">
@@ -14,13 +17,12 @@
                         Baby {{ baby.gender }}
                     </h5>
                     <div class="d-flex justify-content-end">
-                    <a href="/babies/{{ baby.id }}" class="btn btn-outline-info">
+                    <a href="/babies/{{ baby.id }}" class="btn btn-outline-secondary">
                         <i class="fa-solid fa-magnifying-glass"></i> View details
                     </a>
                 </div>
                 </div>
             </div>
-        
         {% endfor %}
     </div>
 </div>
