@@ -12,7 +12,14 @@
     <div class="row">
         {% for baby in babies %}
         <div class="card border-dark mx-1 my-1" style="width: 20rem;">
-            <h3 class="card-header">{{ baby.firstName }}</h3>
+            <h3 class="card-header">
+                {{ baby.firstName }}
+                {% if baby.gender == 'Girl' %}
+                <i class="fa-solid fa-child-dress fa-sm"></i>
+                {% else %}
+                <i class="fa-solid fa-child fa-sm"></i>
+                {% endif %}
+            </h3>
             <div class="card-body">
                 <h5 class="card-title">
                     Birthday: {{ baby.dateOfBirth | date: "%a, %b %d, %y" }}
