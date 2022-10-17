@@ -2,7 +2,7 @@
 
 ## OVERVIEW
 
-This is a baby tracker app for parents to log their baby's daily progress and events, including feedings, sleep, and diaper changes.
+This is a baby tracker app for parents to log their baby's daily progress and events, including feedings, sleep, and diaper changes. It also provides information on important developmental milestones by age.
 
 ### Technology
 - MongoDB
@@ -10,8 +10,18 @@ This is a baby tracker app for parents to log their baby's daily progress and ev
 - Express JS
 - Liquid JS
 - HTML5
-- CSS & CSS Framework
+- CSS & Bootstrap
 - JavaScript
+
+## INSTRUCTIONS
+- Create an account with a username and password.
+- Once logged in, you are able to add a new baby by completing the baby profile form. You can add as many babies as you please.
+- Navigate to the 'My Babies' page and select the baby you want to add events for.
+- You can log feedings, diaper changes, and/or sleep sessions by clicking on the corresponding buttons.
+- Fill in the necessary details and add the event.
+- You can edit/delete each event any time you desire.
+- You can also edit an existing baby profile as well as delete it entirely. Note that deleting a baby profile will also delete all logged events for that baby.
+
 
 ## USER STORIES
 ```
@@ -47,28 +57,6 @@ As a user, I want the ability to...
 ## Entity Relationship Diagrams
 
 ![ERD](https://i.imgur.com/KeSKWpa.png)
-
-
-## Seed Data Example
-```
-const seedDiaper = [{
-    time: '3:15',
-    pee: true,
-    poop: true
-}]
-
-```
-
-## Schedule for the Week
-Install all relevate npm packages required to make the app.
-Do some pseudocoding to get the plan/ideas down.
-Start with setting up the database connections, middleware, and creating the schemas/models. 
-Set up the controllers and routes, CRUD.
-Test the routes via Postman to make sure they work.
-Move onto the frontend part, views, and styling with css framework.
-Test functionality.
-Add any additional features if time permits.
-
 
 
 ## Credits
