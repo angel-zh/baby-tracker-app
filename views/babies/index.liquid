@@ -1,6 +1,7 @@
 {% layout 'layout.liquid'%}
 {% block content %}
 
+{% if loggedIn %}
 <div class="container-sm">
     <h1 class="mb-2">My Little Beans</h1>
     <div class="border border-success border-2 opacity-25 mb-4">
@@ -10,21 +11,23 @@
     </a>
     <div class="row">
         {% for baby in babies %}
-            <div class="card border-dark mx-1 my-1" style="width: 20rem;">
-                <h3 class="card-header">{{ baby.firstName }}</h3>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        Baby {{ baby.gender }}
-                    </h5>
-                    <div class="d-flex justify-content-end">
-                    <a href="/babies/{{ baby.id }}" class="btn btn-outline-secondary">
+        <div class="card border-dark mx-1 my-1" style="width: 20rem;">
+            <h3 class="card-header">{{ baby.firstName }}</h3>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Baby {{ baby.gender }}
+                </h5>
+                <div class="d-flex justify-content-end">
+                    <a href="/babies/{{ baby.id }}" class="btn btn-secondary">
                         <i class="fa-solid fa-magnifying-glass"></i> View details
                     </a>
                 </div>
-                </div>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>
-
+{% else %}
+<p class="text-center fs-5">Please log in or create an account to add a baby profile.</p>
+{% endif %}
 {% endblock %}
