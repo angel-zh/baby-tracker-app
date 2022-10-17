@@ -8,7 +8,7 @@ const formatDate = require('../utils/formatDate')
 const router = express.Router()
 
 // Routes
-// POST
+// POST - Create a new diaper log
 router.post('/:babyId', (req, res) => {
     const babyId = req.params.babyId
     req.body.pee = req.body.pee === 'on' ? true : false
@@ -79,7 +79,6 @@ router.put('/:babyId/:diaperId', (req, res) => {
 
 // DELETE
 router.delete('/delete/:babyId/:diaperId', (req, res) => {
-    // isolate the ids and save to vars for easy ref
     const babyId = req.params.babyId 
     const diaperId = req.params.diaperId
     Baby.findById(babyId)

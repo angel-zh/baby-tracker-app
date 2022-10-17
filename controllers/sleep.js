@@ -75,19 +75,13 @@ router.put('/:babyId/:sleepId', (req, res) => {
 
 // DELETE
 router.delete('/delete/:babyId/:sleepId', (req, res) => {
-    // isolate the ids and save to vars for easy ref
     const babyId = req.params.babyId 
     const sleepId = req.params.sleepId
     Baby.findById(babyId)
         .then(baby => {
-            // get the sleep session
-            // subdocs have a built in method that you can use to access specific subdocuments when you need to
-            // this built in method is called .id()
             const theSleep = baby.sleepSessions.id(sleepId)
             console.log('this is the sleep session that was found', theSleep)
-            // make sure the user is logged in
             if (req.session.loggedIn) {
-                // only let the parent of the sleep session delete it
                 if (theSleep.parent == req.session.userId) {
                     theSleep.remove()
                     baby.save()

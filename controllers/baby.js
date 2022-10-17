@@ -11,14 +11,10 @@ const router = express.Router()
 // GET - index all babies
 router.get('/', (req, res) => {
     Baby.find({ owner: req.session.userId })
-		// .populate('diapers.baby', 'firstName')
-		// .populate('feedings.baby', 'firstName')
-		// .populate('sleepSessions.baby', 'firstName')
         .then(babies => {
             const username = req.session.username
             const loggedIn = req.session.loggedIn
             const userId = req.session.userId
-            // here, we're going to render page but we can also send data that we got from the database to that liquid page for rendering, this data is an object that contains all babies
             res.render('babies/index', { babies, username, loggedIn, userId })
         })
         .catch(err => res.redirect(`/error?error=${err}`))
@@ -33,24 +29,11 @@ router.get('/new', (req, res) => {
 	res.render('babies/new', { username, loggedIn, userId })
 })
 
-// GET for user's babies
-// router.get('/mine', (req, res) => {
-//     // find babies by owner and display them
-//     Baby.find({ owner: req.session.userId })
-//         .then(babies => {
-//             const username = req.session.username
-//             const loggedIn = req.session.loggedIn
-//             const userId = req.session.userId
-//             res.render('babies/index', { babies, username, loggedIn, userId })
-//         })
-//         .catch(err => res.redirect(`/error?error=${err}`))
-//     })
 
 // GET - Show one baby
 router.get('/:id', (req, res) => {
 	const babyId = req.params.id
 	Baby.findById(babyId)
-		
 		.then(baby => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
@@ -66,14 +49,12 @@ router.get('/:id', (req, res) => {
 
 // POST - Create a new baby profile document
 router.post('/', (req, res) => {
-	// req.body.ready = req.body.ready === 'on' ? true : false
 	req.body.owner = req.session.userId 
 	req.body.dateOfBirth = formatDate(req.body.dateOfBirth)
 	console.log(req.body.dateOfBirth)
 	Baby.create(req.body)
 		.then(baby => {
 			console.log('This baby profile was created', baby)
-
 			res.redirect('/babies')
 		})
 		.catch(error => {
@@ -106,7 +87,6 @@ router.put('/:id', (req, res) => {
 		.then(baby => {
 			if (baby.owner == req.session.userId) {
                 return baby.updateOne(req.body)
-            // if owner is not the user, unauthorized status
             } else {
                 res.sendStatus(401)
             }
@@ -118,7 +98,7 @@ router.put('/:id', (req, res) => {
 })
 
 
-// delete route
+// DELETE - Delete baby profile and all subdocs attached
 router.delete('/:id', (req, res) => {
 	const babyId = req.params.id
 	Baby.findByIdAndRemove(babyId)
