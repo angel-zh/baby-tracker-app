@@ -22,6 +22,10 @@ This is a baby tracker app for parents to log their baby's daily progress and ev
 - You can edit/delete each event any time you desire.
 - You can also edit an existing baby profile as well as delete it entirely. Note that deleting a baby profile will also delete all logged events for that baby.
 
+## RESTFUL ROUTES
+
+![restful](https://i.imgur.com/CzCELxm.png)
+
 
 ## USER STORIES
 ```
