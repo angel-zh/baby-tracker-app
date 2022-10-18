@@ -4,6 +4,9 @@
 
 This is a baby tracker app for parents to log their baby's daily progress and events, including feedings, sleep, and diaper changes. It also provides information on important developmental milestones by age.
 
+### Link
+http://lilbeanapp.fly.dev
+
 ### Technology
 - MongoDB
 - Mongoose
