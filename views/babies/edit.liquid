@@ -26,6 +26,8 @@
                 class="form-control"
                 required
             >
+            <label class="form-label">Time:</label>
+            <input class="form-control" type="time" name="time" value="{{ "now" | date: "%H:%M" }}">
             <label class="form-label">Eye Color: </label>
             <input 
                 type="text" 
