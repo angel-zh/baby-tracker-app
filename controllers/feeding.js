@@ -59,7 +59,7 @@ router.put('/:babyId/:feedingId', (req, res) => {
     Baby.findById(babyId)
         .then(baby => {
             const theFeeding = baby.feedings.id(feedingId)
-            if (req.session.loggedIn) {
+            if (req.session.loggedIn) {// consolidate this block since the error codes are the same
                 if (theFeeding.parent == req.session.userId) {
                     theFeeding.set(req.body)
                     baby.save()
@@ -84,7 +84,7 @@ router.delete('/delete/:babyId/:feedingId', (req, res) => {
         .then(baby => {
             const theFeeding = baby.feedings.id(feedingId)
             console.log('this is the feeding that was found', theFeeding)
-            if (req.session.loggedIn) {
+            if (req.session.loggedIn) { // consolidate this block since the error codes are the same
                 if (theFeeding.parent == req.session.userId) {
                     theFeeding.remove()
                     baby.save()

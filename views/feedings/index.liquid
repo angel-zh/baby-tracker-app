@@ -4,11 +4,11 @@
     <div class="card-body">
         <h4><i class="fa-solid fa-person-breastfeeding fa-lg"></i> {{ feeding.time }}</h4>
         <h5>
-            {% if feeding.bottle == true and feeding.breast == true %}
+            {% if feeding.bottle == true and feeding.breast == true %} {%- comment -%} use strict whenever possible {%- endcomment -%}
             Bottlefed & breastfed
-            {% elsif feeding.bottle == true and feeding.breast != true %}
+            {% elsif feeding.bottle == true and feeding.breast != true %}{%- comment -%} see above {%- endcomment -%}
             Bottlefed
-            {% elsif feeding.bottle != true and feeding.breast == true %}
+            {% elsif feeding.bottle != true and feeding.breast == true %}{%- comment -%} === {%- endcomment -%}
             Breastfed
             {% endif %}
             {{ feeding.amount }} oz

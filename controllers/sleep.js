@@ -55,7 +55,7 @@ router.put('/:babyId/:sleepId', (req, res) => {
     Baby.findById(babyId)
         .then(baby => {
             const theSleep = baby.sleepSessions.id(sleepId)
-            if (req.session.loggedIn) {
+            if (req.session.loggedIn) {// consolidate this block since the error codes are the same
                 if (theSleep.parent == req.session.userId) {
                     theSleep.set(req.body)
                     baby.save()
@@ -81,7 +81,7 @@ router.delete('/delete/:babyId/:sleepId', (req, res) => {
         .then(baby => {
             const theSleep = baby.sleepSessions.id(sleepId)
             console.log('this is the sleep session that was found', theSleep)
-            if (req.session.loggedIn) {
+            if (req.session.loggedIn) {// consolidate this block since the error codes are the same
                 if (theSleep.parent == req.session.userId) {
                     theSleep.remove()
                     baby.save()

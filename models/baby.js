@@ -2,7 +2,7 @@
 const mongoose = require('./connection')
 
 // import user model for populate
-const User = require('./user')
+const User = require('./user') // unused import
 const diaperSchema = require('./diaper')
 const feedingSchema = require('./feeding')
 const sleepSchema = require('./sleep')

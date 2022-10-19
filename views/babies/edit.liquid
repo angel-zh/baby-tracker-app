@@ -56,7 +56,7 @@
                 name="gender"
                 value="Boy" 
                 class="form-check-input"
-                {% if baby.gender == 'Boy' %}
+                {% if baby.gender == 'Boy' %} {%- comment -%} use strictly equals here, we should defal to strictly equals whenever possible (ids being a notable usecase for ==) {%- endcomment -%}
                     checked
                 {% endif %}
             >

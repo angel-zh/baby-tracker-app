@@ -13,7 +13,7 @@ router.post('/:babyId', (req, res) => {
     const babyId = req.params.babyId
     req.body.pee = req.body.pee === 'on' ? true : false
     req.body.poop = req.body.poop === 'on' ? true : false
-    req.body.date = formatDate(req.body.date)
+    req.body.date = formatDate(req.body.date) // nice! dates can be tricky 
     if (req.session.loggedIn) {
         req.body.parent = req.session.userId
         req.body.baby = babyId
@@ -59,8 +59,8 @@ router.put('/:babyId/:diaperId', (req, res) => {
     Baby.findById(babyId)
         .then(baby => {
             const theDiaper = baby.diapers.id(diaperId)
-            if (req.session.loggedIn) {
-                if (theDiaper.parent == req.session.userId) {
+            if (req.session.loggedIn) {// consolidate this block with an && since the error codes are the same
+                if (theDiaper.parent == req.session.userId) { 
                     theDiaper.set(req.body)
                     baby.save()
                     res.redirect(`/babies/${baby.id}`)
@@ -85,7 +85,7 @@ router.delete('/delete/:babyId/:diaperId', (req, res) => {
         .then(baby => {
             const theDiaper = baby.diapers.id(diaperId)
             console.log('this is the diaper change that was found', theDiaper)
-            if (req.session.loggedIn) {
+            if (req.session.loggedIn) {// see line 62
                 if (theDiaper.parent == req.session.userId) {
                     theDiaper.remove()
                     baby.save()

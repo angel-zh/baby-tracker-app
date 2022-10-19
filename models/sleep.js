@@ -4,22 +4,22 @@ const mongoose = require('./connection')
 
 const { Schema } = mongoose
 
-const sleepSchema = new Schema(
+const sleepSchema = new Schema( // schemas are JS class instances and should be capitalized
 	{
-		date: { type: Date, required: true },
+		date: { type: Date, required: true }, // see feeding 
 		startTime: String,
 		endTime: String,
-        memo: String,
+		memo: String,
 		baby: {
 			type: Schema.Types.ObjectID,
 			ref: 'Baby',
-            required: true
+			required: true,
 		},
 		parent: {
 			type: Schema.Types.ObjectId,
-        	ref: 'User',
-        	required: true
-		}
+			ref: 'User',
+			required: true,
+		},
 	},
 	{ timestamps: true }
 )
@@ -28,4 +28,4 @@ const sleepSchema = new Schema(
 /////////////////////////////////
 // Export our Model
 /////////////////////////////////
-module.exports = sleepSchema
+module.exports = sleepSchema // schemas are JS class instances and should be capitalized
