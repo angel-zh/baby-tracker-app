@@ -2,7 +2,7 @@
 
 ## OVERVIEW
 
-This is a baby tracker app for parents to log their baby's daily progress and events, including feedings, sleep, and diaper changes. It also provides information on important developmental milestones by age.
+This is a responsive baby tracker app for parents to log their baby's daily progress and events, including feedings, sleep, and diaper changes. It also provides information on important developmental milestones by age.
 
 ### Link
 http://lilbeanapp.fly.dev
@@ -10,7 +10,7 @@ http://lilbeanapp.fly.dev
 ### Technology
 - MongoDB
 - Mongoose
-- Express JS
+- Express
 - Liquid JS
 - HTML5
 - CSS & Bootstrap
@@ -49,25 +49,14 @@ As a user, I want the ability to...
 ```
 
 ## Wireframes/Screenshots
-
-![signup](https://share.balsamiq.com/c/3i7pwWqsoJvGvE6cZ1WWDa.png)
-![login](https://share.balsamiq.com/c/jVzWEzHoGuPJshwkyTtBfc.png)
-![profile](https://share.balsamiq.com/c/aqiGMHvLFmbK86VMkwJkVs.png)
-![sleep](https://share.balsamiq.com/c/dVm8R8yoEfZkzmBKqNycVB.png)
-![diaper](https://share.balsamiq.com/c/8NGBJsjLqkmoLa2E6698GU.png)
-![feeding](https://share.balsamiq.com/c/bC3JDn6GdSqkHiG6BRFdDx.png)
-![newlog](https://share.balsamiq.com/c/coiNTNdpgfj6EVr2Zj3Myw.png)
-![showlog](https://share.balsamiq.com/c/9iiYic7xM42GHq4mrE7GMy.png)
-![logout](https://share.balsamiq.com/c/qCLqtBXk3cTkuUypE2jbEn.png)
+![homepage](public/screenshot-1.png)
+![profile](public/screenshot-2.png)
+![index](public/screenshot-3.png)
+![show](public/screenshot-4.png)
 
 
 ## Entity Relationship Diagrams
 
 ![ERD](https://i.imgur.com/KeSKWpa.png)
 
-
-## Credits
-Wireframes were created using [Balsamiq Cloud](https://balsamiq.com/wireframes/cloud/).
-ERD was created using [Lucidchart](https://www.lucidchart.com/).
-
-# baby-tracker-app
+# lilBean Baby Tracker
