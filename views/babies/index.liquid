@@ -9,23 +9,23 @@
     <a href="/babies/new" class="btn btn-outline-success mb-3">
         <i class="fa-solid fa-circle-plus fa-lg"></i> &nbsp;New Baby
     </a>
-    <div class="row">
+    <div class="row justify-content-center"">
         {% for baby in babies %}
-        <div class="card border-dark mx-1 my-1" style="width: 20rem;">
-            <h3 class="card-header">
-                {{ baby.firstName }}
+        <div class="card border-success mx-2 my-2" style="width: 25rem;">
+            <h3 class="card-header" style="background-color: #deede4;">
                 {% if baby.gender == 'Girl' %}
-                <i class="fa-solid fa-child-dress fa-sm"></i>
+                <i class="fa-solid fa-child-dress fa-sm" style="color: #e28193;"></i>
                 {% else %}
-                <i class="fa-solid fa-child fa-sm"></i>
+                <i class="fa-solid fa-child fa-sm" style="color: #6b93d7;"></i>
                 {% endif %}
+                {{ baby.firstName }}
             </h3>
             <div class="card-body">
                 <h5 class="card-title">
                     Birthday: {{ baby.dateOfBirth | date: "%a, %b %d, %y" }}
                 </h5>
                 <div class="d-flex justify-content-end">
-                    <a href="/babies/{{ baby.id }}" class="btn btn-secondary">
+                    <a href="/babies/{{ baby.id }}" class="btn view-more">
                         <i class="fa-solid fa-magnifying-glass"></i> View details
                     </a>
                 </div>
