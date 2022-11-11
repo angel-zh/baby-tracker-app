@@ -7,18 +7,18 @@ const { Schema } = mongoose
 const sleepSchema = new Schema(
 	{
 		date: { type: Date, required: true },
-		startTime: String,
-		endTime: String,
-        memo: String,
+		startTime: { type: String, required: false },
+		endTime: { type: String, required: false },
+		memo: { type: String, required: false },
 		baby: {
 			type: Schema.Types.ObjectID,
 			ref: 'Baby',
-            required: true
+			required: true
 		},
 		parent: {
 			type: Schema.Types.ObjectId,
-        	ref: 'User',
-        	required: true
+			ref: 'User',
+			required: true
 		}
 	},
 	{ timestamps: true }
