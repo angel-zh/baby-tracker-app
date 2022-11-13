@@ -25,6 +25,14 @@ http://lilbeanapp.fly.dev
 - You can edit/delete each event any time you desire.
 - You can also edit an existing baby profile as well as delete it entirely. Note that deleting a baby profile will also delete all logged events for that baby.
 
+## SCREENSHOTS & ENTITY RELATIONSHIP DIAGRAM
+![homepage](public/screenshot-1.png)
+![profile](public/screenshot-2.png)
+![index](public/screenshot-3.png)
+![show](public/screenshot-4.png)
+
+![ERD](https://i.imgur.com/KeSKWpa.png)
+
 ## RESTFUL ROUTES
 
 ![restful](https://i.imgur.com/CzCELxm.png)
@@ -48,15 +56,9 @@ As a user, I want the ability to...
 - navigate the app using a navbar
 ```
 
-## Wireframes/Screenshots
-![homepage](public/screenshot-1.png)
-![profile](public/screenshot-2.png)
-![index](public/screenshot-3.png)
-![show](public/screenshot-4.png)
+## Credits
 
+Image source: [Unsplash](https://unsplash.com/)
 
-## Entity Relationship Diagrams
-
-![ERD](https://i.imgur.com/KeSKWpa.png)
 
 # lilBean Baby Tracker
