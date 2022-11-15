@@ -30,6 +30,7 @@ http://lilbeanapp.fly.dev
 ![profile](public/screenshot-2.png)
 ![index](public/screenshot-3.png)
 ![show](public/screenshot-4.png)
+![create](public/screenshot-5.png)
 
 ![ERD](https://i.imgur.com/KeSKWpa.png)
 
